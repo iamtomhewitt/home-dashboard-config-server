@@ -6,7 +6,7 @@ const toSentence = (text) => {
   return result.charAt(0).toUpperCase() + result.slice(1);
 }
 
-class BBCNews extends Component {
+class BasicWidget extends Component {
 
   state = {
     data: {}
@@ -24,7 +24,7 @@ class BBCNews extends Component {
       }
     }), () => {
       this.props.dispatch({
-        type: 'BBC_NEWS',
+        type: this.props.action,
         data: this.state.data
       })
     })
@@ -37,7 +37,7 @@ class BBCNews extends Component {
     Object.keys(data).forEach((key) => { pairs.push({ key, value: data[key] }) })
 
     return (
-      <>
+      <div>
         <h4>{title || 'Enter Name'}</h4>
         {
           pairs.map((pair) => {
@@ -50,9 +50,9 @@ class BBCNews extends Component {
             )
           })
         }
-      </>
+      </div>
     );
   }
 }
 
-export default connect()(BBCNews);
+export default connect()(BasicWidget);
