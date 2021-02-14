@@ -1,18 +1,19 @@
 import React from 'react'
-import BBCNews from './BBCNews'
+import BasicWidget from './BasicWidget';
 
-const Widgets = ({ widgets}) => {
+const camelToUpperSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).toUpperCase();
+
+const Widgets = ({ widgets }) => {
   return (
-    <>
+    <div>
       <h3>Widgets</h3>
-      {widgets.map(w => {
-        const { key, data } = w;
-        switch (key) {
-          case 'bbcNews':
-            return <BBCNews key={key} data={data} />
-        }
+      {widgets.map(widget => {
+        const { key, data } = widget;
+        if (key === '_id') return;
+
+        return <BasicWidget key={key} data={data} action={camelToUpperSnakeCase(key)} />
       })}
-    </>
+    </div>
   )
 }
 
