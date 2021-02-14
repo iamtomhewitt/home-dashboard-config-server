@@ -14,7 +14,12 @@ module.exports = {
         token,
         widgets
       })
-      await c.save();
+
+      const newConfig = c.toObject();
+      delete newConfig._id; // Stop mongo throwing an error
+
+      const query = { 'token': token }
+      await ConfigSchema.findOneAndUpdate(query, newConfig, { upsert: true });
     }
     catch (err) {
       throw new Error(err);
