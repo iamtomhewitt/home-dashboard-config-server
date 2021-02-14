@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import Widgets from './components/Widgets';
 
 class App extends Component {
   state = {
@@ -15,6 +16,9 @@ class App extends Component {
       const { message, config } = json;
 
       this.setState({ error: message, config })
+    }
+    else {
+      this.setState({ error: 'Please enter a token' })
     }
   }
 
@@ -33,34 +37,26 @@ class App extends Component {
 
   render() {
     const { config, error } = this.state;
-
-    if (config) {
-      const { widgets, dialogs, endpoints } = config;
-
-      console.log('widgets', this.extract(widgets))
-      console.log('dialogs', this.extract(dialogs))
-      console.log('endpoints', this.extract(endpoints))
-
-      return (
-        <div >
-          <h1>Dashboard Config</h1>
-          <span>Token</span>
-          <input onChange={this.onTokenInputChange} id='token' />
-          <button onClick={this.onSubmitToken}>Submit</button>
-          <div>{JSON.stringify(widgets, null, 2)}</div>
-        </div>
-      );
-    }
+    const { widgets, dialogs, endpoints } = config || {};
 
     return (
-      <div >
+      <div>
         <h1>Dashboard Config</h1>
-        <span>Token</span>
-        <input onChange={this.onTokenInputChange} id='token' />
-        <button onClick={this.getConfig}>Submit</button>
-        {error && <div>Error: {error}</div>}
+        <div>
+          <span>Token</span>
+          <input onChange={this.onTokenInputChange} id='token' value={this.state.token}/>
+          <button onClick={this.getConfig}>Submit</button>
+        </div>
+
+        {config &&
+          <Widgets widgets={this.extract(widgets)}/>
+        }
+
+        {error &&
+          <div>Error: {error}</div>
+        }
       </div>
-    )
+    );
   }
 }
 
