@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Dialogs from './components/Dialogs';
 import Endpoints from './components/Endpoints';
 import Widgets from './components/Widgets';
@@ -11,13 +12,15 @@ class App extends Component {
 
   getConfig = async () => {
     const { token } = this.state;
+    const { dispatch } = this.props;
 
     if (token) {
       const response = await fetch(`http://localhost:3001/config?token=${token}`);
       const json = await response.json();
       const { message, config } = json;
 
-      this.setState({ error: message, config })
+      this.setState({ error: message })
+      dispatch({ type: "CONFIG", config })
     }
     else {
       this.setState({ error: 'Please enter a token' })
@@ -37,12 +40,17 @@ class App extends Component {
     this.setState({ [id]: value })
   }
 
+  onSave = () => {
+    console.log('SAVE', this.props)
+  }
+
   render() {
-    const { config, error } = this.state;
+    const { error } = this.state;
+    const { config } = this.props;
     const { widgets, dialogs, endpoints } = config || {};
 
     return (
-      <div>
+      <div className='app'>
         <h1>Dashboard Config</h1>
         <div>
           <span>Token</span>
@@ -50,20 +58,18 @@ class App extends Component {
           <button onClick={this.getConfig}>Submit</button>
         </div>
 
-        {config &&
-          <>
-            <Widgets widgets={this.extract(widgets)} />
-            <Dialogs dialogs={this.extract(dialogs)} />
-            <Endpoints endpoints={this.extract(endpoints)} />
-          </>
-        }
+        {widgets && <Widgets widgets={this.extract(widgets)} />}
 
-        {error &&
-          <div>Error: {error}</div>
-        }
+        {error && <div>Error: {error}</div>}
+
+        <button onClick={this.onSave}>SAVE ALL</button>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  config: state.config
+})
+
+export default connect(mapStateToProps)(App);
