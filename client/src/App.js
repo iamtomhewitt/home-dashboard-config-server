@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './App.scss';
+import Dialogs from './components/Dialogs';
+import Endpoints from './components/Endpoints';
 import Widgets from './components/Widgets';
+import './App.scss';
 
 class App extends Component {
   state = {
@@ -44,12 +46,16 @@ class App extends Component {
         <h1>Dashboard Config</h1>
         <div>
           <span>Token</span>
-          <input onChange={this.onTokenInputChange} id='token' value={this.state.token}/>
+          <input onChange={this.onTokenInputChange} id='token' value={this.state.token} />
           <button onClick={this.getConfig}>Submit</button>
         </div>
 
         {config &&
-          <Widgets widgets={this.extract(widgets)}/>
+          <>
+            <Widgets widgets={this.extract(widgets)} />
+            <Dialogs dialogs={this.extract(dialogs)} />
+            <Endpoints endpoints={this.extract(endpoints)} />
+          </>
         }
 
         {error &&
