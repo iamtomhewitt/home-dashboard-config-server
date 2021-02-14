@@ -1,0 +1,27 @@
+{
+	"name": "home-dashboard-config-server",
+	"version": "0.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"release": "github-releaser",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"client": "cd client && npm start",
+		"server": "cd api && npm start",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/iamtomhewitt/home-dashboard-config-server.git"
+	},
+	"author": "Tom Hewitt",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/iamtomhewitt/home-dashboard-config-server/issues"
+	},
+	"homepage": "https://github.com/iamtomhewitt/home-dashboard-config-server#readme",
+	"dependencies": {
+		"concurrently": "^5.3.0",
+		"github-releaser": "^1.5.0"
+	}
+}
