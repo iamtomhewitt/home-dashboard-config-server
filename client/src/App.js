@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   onSave = () => {
-    console.log('SAVE', this.props)
+    console.log('SAVE', this.props.config.widgets)
   }
 
   render() {

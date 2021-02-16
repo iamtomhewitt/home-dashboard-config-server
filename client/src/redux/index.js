@@ -5,7 +5,6 @@ const initalState = {
 }
 
 function reducer(state = initalState, action) {
-  console.log('state is currently', state)
   console.log('action is', action)
 
   switch (action.type) {
@@ -20,6 +19,7 @@ function reducer(state = initalState, action) {
 
     case 'BIN_DAY':
       state.config.widgets.binDay = action.data;
+      state.config.widgets.binDay.bins = action.bins;
       return state;
 
     case 'CLOCK':
