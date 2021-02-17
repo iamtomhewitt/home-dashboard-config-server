@@ -18,6 +18,20 @@ class BinDayWidget extends Component {
     this.setState({ data, bins: data.bins })
   }
 
+  setBinsAndDispatch = ({ bins }) => {
+    this.setState(prevState => ({
+      bins
+    }), () => {
+      const { dispatch, action } = this.props;
+      const { data, bins } = this.state;
+      dispatch({
+        type: action,
+        data: data,
+        bins: bins
+      })
+    })
+  }
+
   onChange = (event) => {
     this.setState(prevState => ({
       data: {
@@ -35,65 +49,103 @@ class BinDayWidget extends Component {
 
   onChangeBin = (event, index) => {
     const { id, value } = event.target;
-    let newBins = [...this.state.data.bins];
-    let bin = { ...newBins[index] };
+    let bins = [...this.state.data.bins];
+    let bin = { ...bins[index] };
     bin[id] = value;
-    newBins[index] = bin;
+    bins[index] = bin;
 
-    this.setState(prevState => ({
-      bins: newBins
-    }), () => {
-      this.props.dispatch({
-        type: this.props.action,
-        data: this.state.data,
-        bins: this.state.bins
-      })
-    })
+    this.setBinsAndDispatch({ bins });
   }
 
-  renderItem = ({ key, value }) => (
+  addBin = () => {
+    const today = new Date();
+    const month = String(today.getMonth()).padStart(2, '0');
+
+    const bins = [...this.state.bins];
+    bins.push({
+      binColour: '#FF0000',
+      firstDate: `${today.getDate()}-${month}-${today.getFullYear()}`,
+      name: 'New Bin',
+      repeatRateInDays: 14
+    });
+
+    this.setBinsAndDispatch({ bins });
+  }
+
+  removeBin = (event, bin) => {
+    const bins = this.state.bins.filter(b => b !== bin);
+    this.setBinsAndDispatch({ bins });
+  }
+
+  renderItem = ({ key, value, title, onChange, id }) => (
     <div key={key}>
-      <span className='widget-key'><strong>{toSentence(key)}</strong></span>
-      <input className='widget-value' value={value} onChange={this.onChange} id={key} />
+      <span className='widget-key'><strong>{title}</strong></span>
+      <input className='widget-value' value={value} onChange={onChange} id={id} />
     </div>
   )
 
-  renderBin = ({ bin: { binColour, firstDate, name, repeatRateInDays }, index }) => {
+  renderBin = ({ bin, bin: { binColour, firstDate, name, repeatRateInDays }, index }) => {
     return (
       <div key={index}>
         <h5>Bin ({name})</h5>
-        <span>
-          <span className='widget-key'><strong>Bin Colour</strong></span>
-          <input className='widget-value' value={binColour} onChange={(e) => this.onChangeBin(e, index)} id='binColour' />
-        </span>
-        <span>
-          <span className='widget-key'><strong>First Date</strong></span>
-          <input className='widget-value' value={firstDate} onChange={(e) => this.onChangeBin(e, index)} id='firstDate' />
-        </span>
-        <span>
-          <span className='widget-key'><strong>Name</strong></span>
-          <input className='widget-value' value={name} onChange={(e) => this.onChangeBin(e, index)} id='name' />
-        </span>
-        <span>
-          <span className='widget-key'><strong>Repeat Rate In Days</strong></span>
-          <input className='widget-value' value={repeatRateInDays} onChange={(e) => this.onChangeBin(e, index)} id='repeatRateInDays' />
-        </span>
+        {this.renderItem({
+          key: `binColour-${index}`,
+          value: binColour,
+          title: 'Bin Colour',
+          onChange: (e) => this.onChangeBin(e, index),
+          id: 'binColour'
+        })}
+
+        {this.renderItem({
+          key: `firstDate-${index}`,
+          value: firstDate,
+          title: 'First Date',
+          onChange: (e) => this.onChangeBin(e, index),
+          id: 'firstDate'
+        })}
+
+        {this.renderItem({
+          key: `name-${index}`,
+          value: name,
+          title: 'Name',
+          onChange: (e) => this.onChangeBin(e, index),
+          id: 'name'
+        })}
+
+        {this.renderItem({
+          key: `repeatRateInDays-${index}`,
+          value: repeatRateInDays,
+          title: 'Repeat Rate In Days',
+          onChange: (e) => this.onChangeBin(e, index),
+          id: 'repeatRateInDays'
+        })}
+
+        <button onClick={(e) => this.removeBin(e, bin)}>Remove</button>
       </div>
     )
   }
 
   render() {
     const { data, bins } = this.state;
-    const pairs = [];
-    Object.keys(data).forEach((key) => { if (key !== 'bins') { pairs.push({ key, value: data[key] }) } })
+    const items = [];
+    Object.keys(data).forEach((key) => {
+      if (key !== 'bins') {
+        items.push({
+          key,
+          value: data[key],
+          title: toSentence(key),
+          onChange: this.onChange,
+          id: key
+        })
+      }
+    })
 
     return (
       <div>
         <h4>Bin Day</h4>
-        {pairs.map((pair) => this.renderItem(pair))}
+        {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
-
-        {/* TODO add remove button */}
+        <p><button onClick={this.addBin}>Add New Bin</button></p>
       </div>
     );
   }
