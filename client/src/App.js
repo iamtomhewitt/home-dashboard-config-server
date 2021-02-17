@@ -15,7 +15,7 @@ class App extends Component {
     const { dispatch } = this.props;
 
     if (token) {
-      const response = await fetch(`http://localhost:3001/config?token=${token}`);
+      const response = await fetch(`/config?token=${token}`);
       const json = await response.json();
       const { message, config } = json;
 
@@ -24,6 +24,7 @@ class App extends Component {
     }
     else {
       this.setState({ error: 'Please enter a token' })
+      dispatch({ type: "CONFIG", config: {} })
     }
   }
 
