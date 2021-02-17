@@ -1,6 +1,7 @@
 import React from 'react'
 import BasicWidget from './BasicWidget';
 import BinDayWidget from './BinDayWidget';
+import GmailWidget from './GmailWidget';
 import './index.scss';
 
 const camelToUpperSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).toUpperCase();
@@ -21,8 +22,7 @@ const Widgets = ({ widgets }) => {
             return <BinDayWidget key={key} data={data} action={action} />
 
           case 'gmail':
-            // TODO
-            return;
+            return <GmailWidget key={key} data={data} action={action} />
 
           default:
             return <BasicWidget key={key} data={data} action={action} />
