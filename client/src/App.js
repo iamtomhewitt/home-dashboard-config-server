@@ -51,7 +51,7 @@ class App extends Component {
 
     return (
       <div className='app'>
-        <h1>Dashboard Config</h1>
+        <h1>Home Dashboard Config</h1>
         <div>
           <span>Token</span>
           <input onChange={this.onTokenInputChange} id='token' value={this.state.token} />
