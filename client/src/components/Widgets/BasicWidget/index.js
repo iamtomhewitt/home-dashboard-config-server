@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toSentence } from '../../../lib';
+import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class BasicWidget extends Component {
@@ -37,8 +37,7 @@ class BasicWidget extends Component {
   render() {
     const { data } = this.state;
     const { title } = data;
-    const pairs = [];
-    Object.keys(data).forEach((key) => { if (key !== '_id') pairs.push({ key, value: data[key] }) })
+    const pairs = toKeysAndValues(data);
 
     return (
       <div className='basic'>
