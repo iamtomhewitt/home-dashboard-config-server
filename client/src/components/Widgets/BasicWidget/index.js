@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './BasicWidget.scss';
+import './index.scss';
 
 const toSentence = (text) => {
   const result = text.replace(/([A-Z])/g, " $1")
@@ -33,7 +33,7 @@ class BasicWidget extends Component {
 
   renderItem = ({ key, value }) => (
     <div key={key}>
-      <span className='widget-key'><strong>{toSentence(key)}</strong></span>
+      <span className='widget-key'>{toSentence(key)}</span>
       <input className='widget-value' value={value} onChange={this.onChange} id={key} />
     </div>
   )
@@ -45,8 +45,8 @@ class BasicWidget extends Component {
     Object.keys(data).forEach((key) => { if (key !== '_id') pairs.push({ key, value: data[key] }) })
 
     return (
-      <div>
-        <h4>{title || 'Enter Name'}</h4>
+      <div className='basic'>
+        <h3>{title || 'Enter Name'}</h3>
         {pairs.map((pair) => this.renderItem(pair))}
       </div>
     );

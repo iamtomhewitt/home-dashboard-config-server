@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './index.scss';
 
 const toSentence = (text) => {
   const result = text.replace(/([A-Z])/g, " $1")
@@ -79,7 +80,7 @@ class BinDayWidget extends Component {
 
   renderItem = ({ key, value, title, onChange, id }) => (
     <div key={key}>
-      <span className='widget-key'><strong>{title}</strong></span>
+      <span className='widget-key'>{title}</span>
       <input className='widget-value' value={value} onChange={onChange} id={id} />
     </div>
   )
@@ -87,7 +88,7 @@ class BinDayWidget extends Component {
   renderBin = ({ bin, bin: { binColour, firstDate, name, repeatRateInDays }, index }) => {
     return (
       <div key={index}>
-        <h5>Bin ({name})</h5>
+        <h4>Bin ({name})</h4>
         {this.renderItem({
           key: `binColour-${index}`,
           value: binColour,
@@ -141,8 +142,8 @@ class BinDayWidget extends Component {
     })
 
     return (
-      <div>
-        <h4>Bin Day</h4>
+      <div className='bin-day'>
+        <h3>Bin Day</h3>
         {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
         <p><button onClick={this.addBin}>Add New Bin</button></p>
