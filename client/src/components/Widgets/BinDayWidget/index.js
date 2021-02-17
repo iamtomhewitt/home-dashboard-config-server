@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toSentence } from '../../../lib';
+import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class BinDayWidget extends Component {
@@ -81,41 +81,22 @@ class BinDayWidget extends Component {
     </div>
   )
 
-  renderBin = ({ bin, bin: { binColour, firstDate, name, repeatRateInDays }, index }) => {
+  renderBin = ({ bin, index }) => {
+    const props = toKeysAndValues(bin);
+    const { name } = bin;
     return (
       <div key={index}>
         <h4>Bin ({name})</h4>
-        {this.renderItem({
-          key: `binColour-${index}`,
-          value: binColour,
-          title: 'Bin Colour',
-          onChange: (e) => this.onChangeBin(e, index),
-          id: 'binColour'
-        })}
 
-        {this.renderItem({
-          key: `firstDate-${index}`,
-          value: firstDate,
-          title: 'First Date',
-          onChange: (e) => this.onChangeBin(e, index),
-          id: 'firstDate'
-        })}
-
-        {this.renderItem({
-          key: `name-${index}`,
-          value: name,
-          title: 'Name',
-          onChange: (e) => this.onChangeBin(e, index),
-          id: 'name'
-        })}
-
-        {this.renderItem({
-          key: `repeatRateInDays-${index}`,
-          value: repeatRateInDays,
-          title: 'Repeat Rate In Days',
-          onChange: (e) => this.onChangeBin(e, index),
-          id: 'repeatRateInDays'
-        })}
+        {props.map(({ key, value }) => (
+          this.renderItem({
+            key: `${key}-${index}`,
+            value,
+            title: toSentence(key),
+            onChange: (e) => this.onChangeBin(e, index),
+            id: key
+          })
+        ))}
 
         <button className='bin-day-remove-button' onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
       </div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toKeysAndValues, toSentence } from '../../../lib';
-import './index.scss';
 
 class BasicWidget extends Component {
 

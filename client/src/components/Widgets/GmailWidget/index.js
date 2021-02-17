@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toSentence } from '../../../lib';
+import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class GmailWidget extends Component {
@@ -62,22 +62,19 @@ class GmailWidget extends Component {
 
   renderItem = ({ key, value, title, onChange, id }) => (
     <div key={key}>
-      {/* TODO these css classes can probably be at the App/index.scss level as they are the same throughout */}
       <span className='widget-key'>{title}</span>
       <input className='widget-value' value={value} onChange={onChange} id={id} />
     </div>
   )
 
   renderGmail = (gmail, index) => {
-    // TODO this is used everywhere, make a selector
-    const arr = []
-    Object.keys(gmail).forEach((key) => { if (key !== '_id') { arr.push({ key, value: gmail[key] }) } });
+    const props = toKeysAndValues(gmail);
 
     const { gmailAddress } = gmail;
     return (
       <div key={index}>
         <h4>{gmailAddress}</h4>
-        {arr.map(({ key, value }) => (
+        {props.map(({ key, value }) => (
           this.renderItem({
             key,
             value,
