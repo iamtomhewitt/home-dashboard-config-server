@@ -1,16 +1,12 @@
 .gmail {
-  &-widget-key {
-    display: inline-block;
-    width: 250px;
-  }
-  
-  &-widget-value {
-    display: inline-block;
-    width: 250px;
-  }
-
-  &-button {
+  &-add-button {
     width: 100%;
     max-width: 508px;
+  }
+
+  &-remove-button {
+    width: 100%;
+    max-width: 508px;
+    margin: 10px 0;
   }
 }

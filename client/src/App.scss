@@ -2,17 +2,30 @@
   padding: 10px;
   margin: 10px;
 
-  input {
-    width: 250px;
+  .token {
+    span {
+      display: inline-block;
+      width: 250px;
+    }
+
+    input {
+      display: inline-block;
+      width: 250px;
+    }
+
+    button {
+      margin: 0 10px;
+      width: 150px;
+    }
   }
 
-  span {
+  .widget-key {
     display: inline-block;
     width: 250px;
   }
 
-  button {
-    margin: 0 10px;
-    width: 150px;
+  .widget-value {
+    display: inline-block;
+    width: 250px;
   }
 }
