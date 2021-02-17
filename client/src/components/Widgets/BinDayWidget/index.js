@@ -121,7 +121,7 @@ class BinDayWidget extends Component {
           id: 'repeatRateInDays'
         })}
 
-        <button onClick={(e) => this.removeBin(e, bin)}>Remove</button>
+        <button className='bin-day-remove-button' onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
       </div>
     )
   }
@@ -146,7 +146,7 @@ class BinDayWidget extends Component {
         <h3>Bin Day</h3>
         {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
-        <p><button onClick={this.addBin}>Add New Bin</button></p>
+        <p><button className='bin-day-add-button' onClick={this.addBin}>Add New Bin</button></p>
       </div>
     );
   }

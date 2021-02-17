@@ -52,7 +52,7 @@ class App extends Component {
     return (
       <div className='app'>
         <h1>Home Dashboard Config</h1>
-        <div>
+        <div className='token'>
           <span>Token</span>
           <input onChange={this.onTokenInputChange} id='token' value={this.state.token} />
           <button onClick={this.getConfig}>Submit</button>

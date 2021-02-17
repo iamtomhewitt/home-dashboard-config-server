@@ -68,8 +68,8 @@ class GmailWidget extends Component {
   renderItem = ({ key, value, title, onChange, id }) => (
     <div key={key}>
       {/* TODO these css classes can probably be at the App/index.scss level as they are the same throughout */}
-      <span className='gmail-widget-key'>{title}</span>
-      <input className='gmail-widget-value' value={value} onChange={onChange} id={id} />
+      <span className='widget-key'>{title}</span>
+      <input className='widget-value' value={value} onChange={onChange} id={id} />
     </div>
   )
 
@@ -92,7 +92,7 @@ class GmailWidget extends Component {
           })
         ))}
 
-        <button onClick={(e) => this.removeGmail(e, gmail)}>Remove</button>
+        <button className='gmail-remove-button' onClick={(e) => this.removeGmail(e, gmail)}>Remove '{gmailAddress}'</button>
       </div>
     )
   }
@@ -104,7 +104,7 @@ class GmailWidget extends Component {
       <div className='gmail'>
         <h3>Gmail</h3>
         {data.map((item, index) => this.renderGmail(item, index))}
-        <p><button className='gmail-button' onClick={this.addGmail}>Add Gmail</button></p>
+        <p><button className='gmail-add-button' onClick={this.addGmail}>Add Gmail</button></p>
       </div>
     );
   }
