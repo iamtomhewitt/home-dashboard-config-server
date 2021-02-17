@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toSentence } from '../../../lib';
 import './index.scss';
-
-const toSentence = (text) => {
-  const result = text.replace(/([A-Z])/g, " $1")
-  return result.charAt(0).toUpperCase() + result.slice(1);
-}
 
 class BinDayWidget extends Component {
 
