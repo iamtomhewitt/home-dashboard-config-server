@@ -11,7 +11,7 @@ const Widgets = ({ widgets }) => {
     <div className='widgets'>
       <h2>Widgets</h2>
       {widgets.map(widget => {
-        const { key, data } = widget;
+        const { key, value } = widget;
         const action = camelToUpperSnakeCase(key);
 
         switch (key) {
@@ -19,13 +19,13 @@ const Widgets = ({ widgets }) => {
             return;
 
           case 'binDay':
-            return <BinDayWidget key={key} data={data} action={action} />
+            return <BinDayWidget key={key} data={value} action={action} />
 
           case 'gmail':
-            return <GmailWidget key={key} data={data} action={action} />
+            return <GmailWidget key={key} data={value} action={action} />
 
           default:
-            return <BasicWidget key={key} data={data} action={action} />
+            return <BasicWidget key={key} data={value} action={action} />
         }
       })}
     </div>
