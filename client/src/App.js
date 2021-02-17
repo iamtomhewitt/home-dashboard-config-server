@@ -11,6 +11,13 @@ class App extends Component {
     token: ''
   }
 
+  componentDidMount() {
+    const tokenQueryParam = new URLSearchParams(window.location.search).get("token");
+    if (tokenQueryParam) {
+      this.setState({ token: tokenQueryParam });
+    }
+  }
+
   getConfig = async () => {
     const { token } = this.state;
     const { dispatch } = this.props;
