@@ -1,24 +1,30 @@
 import React from 'react'
 import BasicWidget from './BasicWidget';
 import BinDayWidget from './BinDayWidget';
+import './index.scss';
 
 const camelToUpperSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).toUpperCase();
 
 const Widgets = ({ widgets }) => {
   return (
-    <div>
-      <h3>Widgets</h3>
+    <div className='widgets'>
+      <h2>Widgets</h2>
       {widgets.map(widget => {
         const { key, data } = widget;
         const action = camelToUpperSnakeCase(key);
-        
+
         if (key === '_id') return;
 
-        if (key === 'binDay') {
-          return <BinDayWidget key={key} data={data} action={action} />
-        }
+        switch (key) {
+          case '_id':
+            return;
 
-        return <BasicWidget key={key} data={data} action={action} />
+          case 'binDay':
+            return <BinDayWidget key={key} data={data} action={action} />
+
+          default:
+            return <BasicWidget key={key} data={data} action={action} />
+        }
       })}
     </div>
   )

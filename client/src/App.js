@@ -62,7 +62,7 @@ class App extends Component {
 
         {error && <div>Error: {error}</div>}
 
-        <button onClick={this.onSave}>SAVE ALL</button>
+        {widgets && <button onClick={this.onSave}>SAVE ALL</button>}
       </div>
     );
   }
