@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Dialogs from './components/Dialogs';
-import Endpoints from './components/Endpoints';
 import Widgets from './components/Widgets';
 import { toKeysAndValues } from './lib';
 import './App.scss';
@@ -46,7 +45,7 @@ class App extends Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, token } = this.state;
     const { config } = this.props;
     const { widgets, dialogs, endpoints } = config || {};
 
@@ -55,7 +54,7 @@ class App extends Component {
         <h1>Home Dashboard Config</h1>
         <div className='token'>
           <span>Token</span>
-          <input onChange={this.onTokenInputChange} id='token' value={this.state.token} />
+          <input onChange={this.onTokenInputChange} id='token' value={token} />
           <p><button onClick={this.getConfig}>Submit</button></p>
         </div>
 

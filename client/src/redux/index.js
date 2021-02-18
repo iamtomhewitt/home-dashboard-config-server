@@ -51,6 +51,34 @@ function reducer(state = initalState, action) {
       state.config.widgets.weather = action.data;
       return state;
 
+    case 'DIALOG_ADD_NEW_RECIPE':
+      state.config.dialogs.addNewRecipe = action.data;
+      return state;
+
+    case 'DIALOG_CONFIRM':
+      state.config.dialogs.confirm = action.data;
+      return state;
+
+    case 'DIALOG_LOGS':
+      state.config.dialogs.logs = action.data;
+      return state;
+
+    case 'DIALOG_SETTINGS':
+      state.config.dialogs.settings = action.data;
+      return state;
+
+    case 'DIALOG_SELECT_RECIPES':
+      state.config.dialogs.selectRecipe = action.data;
+      return state;
+
+    case 'DIALOG_RECIPE_STEPS':
+      state.config.dialogs.recipeSteps = action.data;
+      return state;
+
+    case 'DIALOG_VERSION':
+      state.config.dialogs.version = action.data;
+      return state;
+
     default:
       return state;
   }
