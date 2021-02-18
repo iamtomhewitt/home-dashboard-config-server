@@ -3,8 +3,8 @@ import BasicWidget from './BasicWidget';
 import BinDayWidget from './BinDayWidget';
 import GmailWidget from './GmailWidget';
 import JourneyPlannerWidget from './JourneyPlannerWidget';
-
-const camelToUpperSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).toUpperCase();
+import { toUpperSnakeCase } from '../../lib';
+import './index.scss';
 
 const Widgets = ({ widgets }) => {
   return (
@@ -12,34 +12,42 @@ const Widgets = ({ widgets }) => {
       <h2>Widgets</h2>
       {widgets.map(widget => {
         const { key, value } = widget;
-        const action = camelToUpperSnakeCase(key);
+        const action = toUpperSnakeCase(key);
+
+        let component;
 
         switch (key) {
           case '_id':
             return;
 
           case 'binDay':
-            return renderWidget(BinDayWidget, { key, value, action })
+            component = BinDayWidget;
+            break;
 
           case 'gmail':
-            return renderWidget(GmailWidget, { key, value, action })
+            component = GmailWidget
+            break;
 
           case 'journeyPlanner':
-            return renderWidget(JourneyPlannerWidget, { key, value, action })
+            component = JourneyPlannerWidget
+            break;
 
           default:
-            return renderWidget(BasicWidget, { key, value, action })
+            component = BasicWidget
+            break;
         }
+
+        return renderWidget(component, { key, value, action })
       })}
     </div>
   )
 }
 
 const renderWidget = (Component, { key, value, action }) => (
-  <>
+  <div key={key}>
     <Component key={key} data={value} action={action} />
     <hr />
-  </>
+  </div>
 )
 
 export default Widgets;

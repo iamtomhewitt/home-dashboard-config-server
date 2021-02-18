@@ -56,7 +56,7 @@ class App extends Component {
         <div className='token'>
           <span>Token</span>
           <input onChange={this.onTokenInputChange} id='token' value={this.state.token} />
-          <button onClick={this.getConfig}>Submit</button>
+          <p><button onClick={this.getConfig}>Submit</button></p>
         </div>
 
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
