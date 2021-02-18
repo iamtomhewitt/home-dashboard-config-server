@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Dialogs from './components/Dialogs';
 import Endpoints from './components/Endpoints';
 import Widgets from './components/Widgets';
-import './App.scss';
 import { toKeysAndValues } from './lib';
+import './App.scss';
 
 class App extends Component {
   state = {
@@ -60,6 +60,7 @@ class App extends Component {
         </div>
 
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
+        {dialogs && <Dialogs dialogs={toKeysAndValues(dialogs)} />}
 
         {error && <div>Error: {error}</div>}
 

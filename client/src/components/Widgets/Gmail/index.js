@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
-class GmailWidget extends Component {
+class Gmail extends Component {
 
   state = {
     data: []
@@ -102,4 +102,4 @@ class GmailWidget extends Component {
   }
 }
 
-export default connect()(GmailWidget);
+export default connect()(Gmail);

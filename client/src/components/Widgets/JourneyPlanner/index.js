@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
-class JourneyPlannerWidget extends Component {
+class JourneyPlanner extends Component {
 
   state = {
     data: {},
@@ -124,4 +124,4 @@ class JourneyPlannerWidget extends Component {
   }
 }
 
-export default connect()(JourneyPlannerWidget);
+export default connect()(JourneyPlanner);
