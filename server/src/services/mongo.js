@@ -12,17 +12,18 @@ module.exports = {
         dialogs,
         endpoints,
         token,
-        widgets
-      })
+        widgets,
+      });
 
       const newConfig = c.toObject();
+
+      // eslint-disable-next-line
       delete newConfig._id; // Stop mongo throwing an error
 
-      const query = { 'token': token }
+      const query = { token };
       await ConfigSchema.findOneAndUpdate(query, newConfig, { upsert: true });
-    }
-    catch (err) {
+    } catch (err) {
       throw new Error(err);
     }
-  }
+  },
 };

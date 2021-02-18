@@ -28,8 +28,8 @@ const WidgetsSchema = new mongoose.Schema({
         firstDate: String,
         name: String,
         repeatRateInDays: Number,
-      }
-    ]
+      },
+    ],
   },
   clock: {
     colour: String,
@@ -68,8 +68,8 @@ const WidgetsSchema = new mongoose.Schema({
         endPoint: String,
         name: String,
         startPoint: String,
-      }
-    ]
+      },
+    ],
   },
   gmail: [{
     apiKey: String,
@@ -120,7 +120,7 @@ const WidgetsSchema = new mongoose.Schema({
     textColour: String,
     title: String,
     titleColour: String,
-  }
-})
+  },
+});
 
 module.exports = mongoose.model('Widgets', WidgetsSchema);
