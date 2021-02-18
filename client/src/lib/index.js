@@ -12,3 +12,5 @@ export const toKeysAndValues = (object) => {
   });
   return arr;
 }
+
+export const toUpperSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).toUpperCase();
