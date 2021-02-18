@@ -2,11 +2,19 @@
   &-add-button {
     width: 100%;
     max-width: 508px;
+    background: #248cb3;
+    color: #fff;
+    border: 0;
+    height: 40px;
   }
 
   &-remove-button {
     width: 100%;
     max-width: 508px;
     margin: 10px 0;
+    background: #e8514d;
+    color: #fff;
+    border: 0;
+    height: 35px;
   }
 }
