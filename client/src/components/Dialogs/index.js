@@ -5,10 +5,10 @@ import { toSentence, toUpperSnakeCase } from '../../lib';
 const Dialogs = ({ dialogs }) => {
   return (
     <div className='items'>
-      <h3>Dialogs</h3>
+      <h2>Dialogs</h2>
       {dialogs.map(dialog => {
         const { key, value } = dialog;
-        const action = toUpperSnakeCase(key);
+        const action =  `DIALOG_${toUpperSnakeCase(key)}`;
         value.title = toSentence(key)
 
         return (
