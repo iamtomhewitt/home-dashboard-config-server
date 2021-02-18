@@ -1,14 +1,13 @@
 import React from 'react'
-import BasicWidget from './BasicWidget';
-import BinDayWidget from './BinDayWidget';
-import GmailWidget from './GmailWidget';
-import JourneyPlannerWidget from './JourneyPlannerWidget';
+import BasicItem from '../BasicItem';
+import BinDay from './BinDay';
+import Gmail from './Gmail';
+import JourneyPlanner from './JourneyPlanner';
 import { toUpperSnakeCase } from '../../lib';
-import './index.scss';
 
 const Widgets = ({ widgets }) => {
   return (
-    <div className='widgets'>
+    <div className='items'>
       <h2>Widgets</h2>
       {widgets.map(widget => {
         const { key, value } = widget;
@@ -21,19 +20,19 @@ const Widgets = ({ widgets }) => {
             return;
 
           case 'binDay':
-            component = BinDayWidget;
+            component = BinDay;
             break;
 
           case 'gmail':
-            component = GmailWidget
+            component = Gmail
             break;
 
           case 'journeyPlanner':
-            component = JourneyPlannerWidget
+            component = JourneyPlanner
             break;
 
           default:
-            component = BasicWidget
+            component = BasicItem
             break;
         }
 

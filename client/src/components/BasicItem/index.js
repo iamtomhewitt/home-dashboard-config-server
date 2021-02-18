@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toKeysAndValues, toSentence } from '../../../lib';
+import { toKeysAndValues, toSentence } from '../../lib';
 
-class BasicWidget extends Component {
+class BasicItem extends Component {
 
   state = {
     data: {}
@@ -47,4 +47,4 @@ class BasicWidget extends Component {
   }
 }
 
-export default connect()(BasicWidget);
+export default connect()(BasicItem);

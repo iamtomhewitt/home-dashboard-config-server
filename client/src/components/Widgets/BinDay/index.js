@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
-class BinDayWidget extends Component {
+class BinDay extends Component {
 
   state = {
     data: {},
@@ -134,4 +134,4 @@ const mapStateToProps = state => ({
   data: state.config.widgets.binDay
 })
 
-export default connect(mapStateToProps)(BinDayWidget);
+export default connect(mapStateToProps)(BinDay);
