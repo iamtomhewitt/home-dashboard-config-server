@@ -5,14 +5,12 @@ const route = express.Router();
 
 route.get('/', async (req, res) => {
   const { token } = req.query;
-  const config = await mongo.getConfigForToken({ token })
+  const config = await mongo.getConfigForToken({ token });
 
   if (config) {
-    res.status(200).json({ config })
+    return res.status(200).json({ config });
   }
-  else {
-    res.status(500).json({ message: `Could not find config for token ${token}` })
-  }
+  return res.status(500).json({ message: `Could not find config for token ${token}` });
 });
 
 route.post('/', async (req, res) => {
@@ -21,9 +19,9 @@ route.post('/', async (req, res) => {
 
     await mongo.saveConfigForToken({
       token,
-      config
-    })
-    res.status(201).json({ message: 'Config saved!' })
+      config,
+    });
+    return res.status(201).json({ message: 'Config saved!' });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

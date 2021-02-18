@@ -1,36 +1,37 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class BinDay extends Component {
-
   state = {
     data: {},
-    bins: []
+    bins: [],
   }
 
   componentDidMount() {
     const { data } = this.props;
-    this.setState({ data, bins: data.bins })
+    this.setState({ data, bins: data.bins });
   }
 
   setBinsAndDispatch = ({ bins }) => {
-    this.setState(prevState => ({
-      bins
+    this.setState(() => ({
+      bins,
     }), () => {
       const { dispatch, action } = this.props;
       const { data, bins } = this.state;
       dispatch({
         type: action,
-        data: data,
-        bins: bins
-      })
-    })
+        data,
+        bins,
+      });
+    });
   }
 
   onChange = (event) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       data: {
         ...prevState.data,
         [event.target.id]: event.target.value,
@@ -39,15 +40,15 @@ class BinDay extends Component {
       this.props.dispatch({
         type: this.props.action,
         data: this.state.data,
-        bins: this.state.bins
-      })
-    })
+        bins: this.state.bins,
+      });
+    });
   }
 
   onChangeBin = (event, index) => {
     const { id, value } = event.target;
-    let bins = [...this.state.data.bins];
-    let bin = { ...bins[index] };
+    const bins = [...this.state.data.bins];
+    const bin = { ...bins[index] };
     bin[id] = value;
     bins[index] = bin;
 
@@ -63,21 +64,23 @@ class BinDay extends Component {
       binColour: '#FF0000',
       firstDate: `${today.getDate()}-${month}-${today.getFullYear()}`,
       name: 'New Bin',
-      repeatRateInDays: 14
+      repeatRateInDays: 14,
     });
 
     this.setBinsAndDispatch({ bins });
   }
 
   removeBin = (event, bin) => {
-    const bins = this.state.bins.filter(b => b !== bin);
+    const bins = this.state.bins.filter((b) => b !== bin);
     this.setBinsAndDispatch({ bins });
   }
 
-  renderItem = ({ key, value, title, onChange, id }) => (
+  renderItem = ({
+    key, value, title, onChange, id,
+  }) => (
     <div key={key}>
-      <span className='widget-key'>{title}</span>
-      <input className='widget-value' value={value} onChange={onChange} id={id} />
+      <span className="widget-key">{title}</span>
+      <input className="widget-value" value={value} onChange={onChange} id={id} />
     </div>
   )
 
@@ -94,13 +97,13 @@ class BinDay extends Component {
             value,
             title: toSentence(key),
             onChange: (e) => this.onChangeBin(e, index),
-            id: key
+            id: key,
           })
         ))}
 
-        <button className='bin-day-remove-button' onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
+        <button className="bin-day-remove-button" onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
       </div>
-    )
+    );
   }
 
   render() {
@@ -113,25 +116,31 @@ class BinDay extends Component {
           value: data[key],
           title: toSentence(key),
           onChange: this.onChange,
-          id: key
-        })
+          id: key,
+        });
       }
-    })
+    });
 
     return (
-      <div className='bin-day'>
+      <div className="bin-day">
         <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
-        <p><button className='bin-day-add-button' onClick={this.addBin}>Add New Bin</button></p>
+        <p><button className="bin-day-add-button" onClick={this.addBin}>Add New Bin</button></p>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   bins: state.config.widgets.binDay.bins,
-  data: state.config.widgets.binDay
-})
+  data: state.config.widgets.binDay,
+});
+
+BinDay.propTypes = {
+  data: PropTypes.object,
+  dispatch: PropTypes.func,
+  action: PropTypes.string,
+};
 
 export default connect(mapStateToProps)(BinDay);

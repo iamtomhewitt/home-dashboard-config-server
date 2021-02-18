@@ -11,6 +11,6 @@ const EndpointsSchema = new mongoose.Schema({
   todoist: String,
   trains: String,
   weather: String,
-})
+});
 
 module.exports = mongoose.model('Endpoints', EndpointsSchema);

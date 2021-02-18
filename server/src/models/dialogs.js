@@ -28,7 +28,7 @@ const DialogsSchema = new mongoose.Schema({
   version: {
     mainColour: String,
     textColour: String,
-  }
-})
+  },
+});
 
 module.exports = mongoose.model('Dialogs', DialogsSchema);
