@@ -36,6 +36,7 @@ function reducer(state = initalState, action) {
 
     case 'JOURNEY_PLANNER':
       state.config.widgets.journeyPlanner = action.data;
+      state.config.widgets.journeyPlanner.journeys = action.journeys;
       return state;
 
     case 'SHOPPING_LIST':

@@ -2,6 +2,7 @@ import React from 'react'
 import BasicWidget from './BasicWidget';
 import BinDayWidget from './BinDayWidget';
 import GmailWidget from './GmailWidget';
+import JourneyPlannerWidget from './JourneyPlannerWidget';
 
 const camelToUpperSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).toUpperCase();
 
@@ -18,17 +19,27 @@ const Widgets = ({ widgets }) => {
             return;
 
           case 'binDay':
-            return <BinDayWidget key={key} data={value} action={action} />
+            return renderWidget(BinDayWidget, { key, value, action })
 
           case 'gmail':
-            return <GmailWidget key={key} data={value} action={action} />
+            return renderWidget(GmailWidget, { key, value, action })
+
+          case 'journeyPlanner':
+            return renderWidget(JourneyPlannerWidget, { key, value, action })
 
           default:
-            return <BasicWidget key={key} data={value} action={action} />
+            return renderWidget(BasicWidget, { key, value, action })
         }
       })}
     </div>
   )
 }
+
+const renderWidget = (Component, { key, value, action }) => (
+  <>
+    <Component key={key} data={value} action={action} />
+    <hr />
+  </>
+)
 
 export default Widgets;

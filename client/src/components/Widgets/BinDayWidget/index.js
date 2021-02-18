@@ -120,7 +120,7 @@ class BinDayWidget extends Component {
 
     return (
       <div className='bin-day'>
-        <h3>Bin Day</h3>
+        <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
         <p><button className='bin-day-add-button' onClick={this.addBin}>Add New Bin</button></p>
