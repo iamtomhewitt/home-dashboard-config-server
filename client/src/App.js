@@ -11,6 +11,9 @@ import './App.scss';
 class App extends Component {
   state = {
     token: ''
+    responseMessage: '',
+    error: '',
+    buttonDisabled: false,
   }
 
   componentDidMount() {
@@ -42,12 +45,32 @@ class App extends Component {
     this.setState({ [id]: value });
   }
 
-  onSave = () => {
-    console.log('SAVE', this.props.config);
+  onSave = async (event) => {
+    this.setState({ buttonDisabled: true });
+    event.preventDefault();
+
+    const response = await fetch('/config', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token: this.state.token,
+        config: this.props.config,
+      }),
+    });
+
+    const { ok } = response;
+    const json = await response.json();
+    const { message } = json;
+
+    if (!ok) {
+      this.setState({ error: message, buttonDisabled: false });
+    } else {
+      this.setState({ responseMessage: message, buttonDisabled: false });
+    }
   }
 
   render() {
-    const { error, token } = this.state;
+    const { error, token, responseMessage, buttonDisabled } = this.state;
     const { config } = this.props;
     const { widgets, dialogs } = config || {};
 
@@ -65,7 +88,8 @@ class App extends Component {
 
         {error && <div>Error: {error}</div>}
 
-        {widgets && <button className="save-button" onClick={this.onSave}>SAVE ALL</button>}
+        {responseMessage && <div>{responseMessage}</div>}
+        {widgets && <button className="save-button" onClick={this.onSave} disabled={buttonDisabled}>Save All</button>}
       </div>
     );
   }
