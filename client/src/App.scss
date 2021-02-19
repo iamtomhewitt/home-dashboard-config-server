@@ -50,6 +50,17 @@
     height: 25px;
     margin: 5px 0;
   }
+
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+
+  .response-message {
+    color: #13ba85;
+    font-weight: bold;
+    margin: 15px 0;
+  }
 }
 
 .items {
