@@ -86,9 +86,9 @@ class App extends Component {
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
         {dialogs && <Dialogs dialogs={toKeysAndValues(dialogs)} />}
 
-        {error && <div>Error: {error}</div>}
+        {error && <div className="error">Error: {error}</div>}
 
-        {responseMessage && <div>{responseMessage}</div>}
+        {responseMessage && <div className="response-message">{responseMessage}</div>}
         {widgets && <button className="save-button" onClick={this.onSave} disabled={buttonDisabled}>Save All</button>}
       </div>
     );
