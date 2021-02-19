@@ -7,7 +7,7 @@
 		"client": "cd client && npm start",
 		"lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
 		"lint-fix": "eslint --ignore-path .gitignore . --fix",
-		"lint-sass": "sass-lint --config .sasslintrc src/**/*.scss --verbose --no-exit",
+		"lint-sass": "sass-lint --config .sasslintrc client/src/**/*.scss --verbose --no-exit",
 		"release": "github-releaser",
 		"server": "cd server && npm start",
 		"start": "concurrently \"npm run server\" \"npm run client\"",

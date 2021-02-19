@@ -1,20 +1,20 @@
 .bin-day {
   &-add-button {
-    width: 100%;
-    max-width: 508px;
     background: #248cb3;
-    color: #fff;
     border: 0;
+    color: #fff;
     height: 40px;
+    max-width: 508px;
+    width: 100%;
   }
 
   &-remove-button {
-    width: 100%;
-    max-width: 508px;
-    margin: 10px 0;
     background: #e8514d;
-    color: #fff;
     border: 0;
+    color: #fff;
     height: 35px;
+    margin: 10px 0;
+    max-width: 508px;
+    width: 100%;
   }
 }
