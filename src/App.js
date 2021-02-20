@@ -8,6 +8,7 @@ import Widgets from './components/Widgets';
 import { toKeysAndValues } from './lib';
 
 import './App.scss';
+import { LoadingIcon } from './components/LoadingIcon';
 
 class App extends Component {
   state = {
@@ -15,6 +16,7 @@ class App extends Component {
     responseMessage: '',
     error: '',
     buttonDisabled: false,
+    loading: false,
   }
 
   componentDidMount() {
@@ -29,14 +31,15 @@ class App extends Component {
     const { dispatch } = this.props;
 
     if (token) {
+      this.setState({ loading: true })
       const response = await fetch(`${BACKEND_URL}/config?token=${token}`);
       const json = await response.json();
       const { message, config } = json;
 
-      this.setState({ error: message });
+      this.setState({ error: message, loading: false });
       dispatch({ type: 'CONFIG', config });
     } else {
-      this.setState({ error: 'Please enter a token' });
+      this.setState({ error: 'Please enter a token', loading: false });
       dispatch({ type: 'CONFIG', config: {} });
     }
   }
@@ -71,18 +74,20 @@ class App extends Component {
   }
 
   render() {
-    const { error, token, responseMessage, buttonDisabled } = this.state;
+    const { error, token, responseMessage, buttonDisabled, loading } = this.state;
     const { config } = this.props;
     const { widgets, dialogs } = config || {};
 
     return (
       <div className="app">
-        <h1>Home Dashboard Config</h1>
+        <h1>Home Dashboard Settings</h1>
         <div className="token">
           <span>Token</span>
           <input onChange={this.onTokenInputChange} id="token" value={token} />
-          <p><button onClick={this.getConfig}>Submit</button></p>
+          <p><button onClick={this.getConfig}>Get Settings</button></p>
         </div>
+
+        {loading && <LoadingIcon />}
 
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
         {dialogs && <Dialogs dialogs={toKeysAndValues(dialogs)} />}
