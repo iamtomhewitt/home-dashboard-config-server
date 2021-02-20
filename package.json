@@ -10,7 +10,7 @@
 		"start": "react-scripts start",
 		"start-heroku": "serve -s build",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"test": "echo TODO!",
 		"eject": "react-scripts eject"
 	},
 	"repository": {
