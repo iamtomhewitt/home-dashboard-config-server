@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import BACKEND_URL from './config';
 import Dialogs from './components/Dialogs';
 import Widgets from './components/Widgets';
 import { toKeysAndValues } from './lib';
@@ -10,7 +11,7 @@ import './App.scss';
 
 class App extends Component {
   state = {
-    token: 'fc77bb59002b3866e04c1bcd73fe087c',
+    token: '',
     responseMessage: '',
     error: '',
     buttonDisabled: false,
@@ -28,7 +29,7 @@ class App extends Component {
     const { dispatch } = this.props;
 
     if (token) {
-      const response = await fetch(`http://localhost:3001/config?token=${token}`);
+      const response = await fetch(`${BACKEND_URL}/config?token=${token}`);
       const json = await response.json();
       const { message, config } = json;
 
@@ -49,7 +50,7 @@ class App extends Component {
     this.setState({ buttonDisabled: true });
     event.preventDefault();
 
-    const response = await fetch('http://localhost:3001/config', {
+    const response = await fetch(`${BACKEND_URL}/config`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
