@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { toKeysAndValues, toSentence } from '../../../lib';
-import './index.scss';
 
 class JourneyPlanner extends Component {
   state = {
@@ -97,7 +96,7 @@ class JourneyPlanner extends Component {
           })
         ))}
 
-        <button className="journey-remove-button" onClick={(e) => this.removeJourney(e, journey)}>Remove '{name}'</button>
+        <button className="remove-button" onClick={(e) => this.removeJourney(e, journey)}>Remove '{name}'</button>
       </div>
     );
   }
@@ -122,7 +121,7 @@ class JourneyPlanner extends Component {
         <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {journeys.map((journey, index) => this.renderJourney(journey, index))}
-        <p><button className="journey-add-button" onClick={this.addJourney}>Add Journey</button></p>
+        <p><button className="add-button" onClick={this.addJourney}>Add Journey</button></p>
       </div>
     );
   }

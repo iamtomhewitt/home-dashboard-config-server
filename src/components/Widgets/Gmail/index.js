@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { toKeysAndValues, toSentence } from '../../../lib';
-import './index.scss';
 
 class Gmail extends Component {
   state = {
@@ -87,7 +86,7 @@ class Gmail extends Component {
           })
         ))}
 
-        <button className="gmail-remove-button" onClick={(e) => this.removeGmail(e, gmail)}>Remove '{gmailAddress}'</button>
+        <button className="remove-button" onClick={(e) => this.removeGmail(e, gmail)}>Remove '{gmailAddress}'</button>
       </div>
     );
   }
@@ -99,7 +98,7 @@ class Gmail extends Component {
       <div className="gmail">
         <h3>Gmail</h3>
         {data.map((item, index) => this.renderGmail(item, index))}
-        <p><button className="gmail-add-button" onClick={this.addGmail}>Add Gmail</button></p>
+        <p><button className="add-button" onClick={this.addGmail}>Add Gmail</button></p>
       </div>
     );
   }

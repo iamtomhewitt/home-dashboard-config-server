@@ -1,15 +1,36 @@
+@import "./scss/colours.scss";
+
 .app {
   margin: 10px;
   padding: 10px;
   text-align: center;
 
   .save-button {
-    background: #13ba85;
+    background: $submit-button-colour;
     border: 0;
-    color: #fff;
+    color: $button-text-colour;
     font-weight: bold;
     height: 40px;
     width: 500px;
+  }
+
+  .add-button {
+    background: $add-button-colour;
+    border: 0;
+    color: $button-text-colour;
+    height: 40px;
+    max-width: 508px;
+    width: 100%;
+  }
+
+  .remove-button {
+    background: $remove-button-colour;
+    border: 0;
+    color: $button-text-colour;
+    height: 35px;
+    margin: 10px 0;
+    max-width: 508px;
+    width: 100%;
   }
 
   .token {
@@ -20,7 +41,7 @@
     }
 
     input {
-      border: 1px solid #cbd5d9;
+      border: 1px solid $input-border-colour;
       display: inline-block;
       height: 25px;
       margin: 5px 0;
@@ -28,9 +49,9 @@
     }
 
     button {
-      background: #13ba85;
+      background: $submit-button-colour;
       border: 0;
-      color: #fff;
+      color: $button-text-colour;
       height: 30px;
       margin: 0 10px;
       width: 500px;
@@ -44,7 +65,7 @@
   }
 
   .widget-value {
-    border: 1px solid #cbd5d9;
+    border: 1px solid $input-border-colour;
     display: inline-block;
     height: 25px;
     margin: 5px 0;
@@ -52,12 +73,12 @@
   }
 
   .error {
-    color: red;
+    color: $error-colour;
     font-weight: bold;
   }
 
   .response-message {
-    color: #13ba85;
+    color: $success-colour;
     font-weight: bold;
     margin: 15px 0;
   }
