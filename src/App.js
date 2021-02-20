@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 import BACKEND_URL from './config';
 import Dialogs from './components/Dialogs';
+import LoadingIcon from './components/LoadingIcon';
 import Widgets from './components/Widgets';
 import { toKeysAndValues } from './lib';
 
 import './App.scss';
-import { LoadingIcon } from './components/LoadingIcon';
 
 class App extends Component {
   state = {
@@ -31,7 +31,7 @@ class App extends Component {
     const { dispatch } = this.props;
 
     if (token) {
-      this.setState({ loading: true })
+      this.setState({ loading: true });
       const response = await fetch(`${BACKEND_URL}/config?token=${token}`);
       const json = await response.json();
       const { message, config } = json;
