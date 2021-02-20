@@ -1,27 +1,78 @@
 {
 	"name": "home-dashboard-config-server",
 	"version": "0.0.0",
-	"description": "",
-	"main": "index.js",
+	"private": true,
 	"scripts": {
+		"lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
+		"lint-fix": "eslint --ignore-path .gitignore . --fix",
 		"release": "github-releaser",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"client": "cd client && npm start",
-		"server": "cd api && npm start",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
+		"lint-sass": "sass-lint '**/src/*.scss' --verbose --no-exit",
+		"start": "react-scripts start",
+		"start-heroku": "serve -s build",
+		"build": "react-scripts build",
+		"test": "echo TODO!",
+		"eject": "react-scripts eject"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iamtomhewitt/home-dashboard-config-server.git"
+		"url": "git+https://github.com/iamtomhewitt/home-dashboard-config-server.git",
+		"apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard-config-server"
 	},
 	"author": "Tom Hewitt",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/iamtomhewitt/home-dashboard-config-server/issues"
-	},
-	"homepage": "https://github.com/iamtomhewitt/home-dashboard-config-server#readme",
 	"dependencies": {
-		"concurrently": "^5.3.0",
-		"github-releaser": "^1.5.0"
+		"github-releaser": "^1.5.0",
+		"node-sass": "^4.14.1",
+		"prop-types": "^15.7.2",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-redux": "^7.2.2",
+		"react-scripts": "^3.4.1",
+		"redux": "^4.0.5",
+		"sass-lint": "^1.13.1",
+		"serve": "^11.3.2"
+	},
+	"devDependencies": {
+		"@babel/preset-env": "^7.4.2",
+		"@babel/preset-react": "^7.0.0",
+		"babel-eslint": "^10.0.1",
+		"@commitlint/cli": "^11.0.0",
+		"@commitlint/config-conventional": "^11.0.0",
+		"cz-conventional-changelog": "^2.1.0",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb": "^18.2.0",
+		"eslint-plugin-import": "^2.22.0",
+		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-react": "^7.22.0",
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"husky": "^1.1.2",
+		"validate-commit-msg": "^2.14.0"
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	}
 }

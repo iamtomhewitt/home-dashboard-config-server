@@ -1,0 +1,126 @@
+@import './scss/colours';
+
+.app {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+
+  .save-button {
+    background: $submit-button-colour;
+    border: 0;
+    color: $button-text-colour;
+    font-weight: bold;
+    height: 40px;
+    width: 500px;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  }
+
+  .add-button {
+    background: $add-button-colour;
+    border: 0;
+    color: $button-text-colour;
+    height: 40px;
+    max-width: 508px;
+    width: 100%;
+  }
+
+  .remove-button {
+    background: $remove-button-colour;
+    border: 0;
+    color: $button-text-colour;
+    height: 35px;
+    margin: 10px 0;
+    max-width: 508px;
+    width: 100%;
+  }
+
+  .token {
+    span {
+      display: inline-block;
+      text-align: left;
+      width: 250px;
+    }
+
+    @media (max-width: 480px) {
+      span {
+        width: 100%;
+      }
+    }
+
+    input {
+      border: 1px solid $input-border-colour;
+      display: inline-block;
+      height: 25px;
+      margin: 5px 0;
+      width: 250px;
+    }
+
+    @media (max-width: 480px) {
+      input {
+        border: 1px solid $input-border-colour;
+        margin: 0;
+        width: 98.5%;
+      }
+    }
+
+    button {
+      background: $submit-button-colour;
+      border: 0;
+      color: $button-text-colour;
+      height: 30px;
+      margin: 0 10px;
+      width: 500px;
+    }
+
+    @media (max-width: 480px) {
+      button {
+        margin: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  .widget-key {
+    display: inline-block;
+    text-align: left;
+    width: 250px;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  }
+
+  .widget-value {
+    border: 1px solid $input-border-colour;
+    display: inline-block;
+    height: 25px;
+    margin: 5px 0;
+    padding-left: 5px;
+    width: 250px;
+
+    @media (max-width: 480px) {
+      width: 98.5%;
+    }
+  }
+
+  .error {
+    color: $error-colour;
+    font-weight: bold;
+  }
+
+  .response-message {
+    color: $success-colour;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+}
+
+.items {
+  hr {
+    margin-top: 40px;
+    max-width: 500px;
+  }
+}
