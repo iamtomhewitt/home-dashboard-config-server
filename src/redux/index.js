@@ -5,8 +5,6 @@ const initalState = {
 };
 
 function reducer(state = initalState, action) {
-  console.log('action is', action);
-
   switch (action.type) {
   case 'CONFIG':
     return {

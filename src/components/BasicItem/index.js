@@ -30,9 +30,9 @@ class BasicItem extends Component {
   renderItem = ({ key, value }) => (
     <div key={key}>
       <span className="widget-key">{toSentence(key)}</span>
-      <input className="widget-value" value={value} onChange={this.onChange} id={key} />
+      <input className="widget-value" value={value} onChange={this.onChange} id={key} type={typeof (value)} />
     </div>
-  )
+  );
 
   render() {
     const { data } = this.state;
