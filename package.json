@@ -6,7 +6,7 @@
 		"lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
 		"lint-fix": "eslint --ignore-path .gitignore . --fix",
 		"release": "github-releaser",
-		"lint-sass": "sass-lint src/**/*.scss --verbose --no-exit",
+		"lint-sass": "sass-lint '**/src/*.scss' --verbose --no-exit",
 		"start": "react-scripts start",
 		"start-heroku": "serve -s build",
 		"build": "react-scripts build",

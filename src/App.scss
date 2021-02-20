@@ -1,4 +1,4 @@
-@import "./scss/colours.scss";
+@import './scss/colours';
 
 .app {
   margin: 10px;
@@ -12,6 +12,10 @@
     font-weight: bold;
     height: 40px;
     width: 500px;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   }
 
   .add-button {
@@ -40,12 +44,26 @@
       width: 250px;
     }
 
+    @media (max-width: 480px) {
+      span {
+        width: 100%;
+      }
+    }
+
     input {
       border: 1px solid $input-border-colour;
       display: inline-block;
       height: 25px;
       margin: 5px 0;
       width: 250px;
+    }
+
+    @media (max-width: 480px) {
+      input {
+        border: 1px solid $input-border-colour;
+        margin: 0;
+        width: 98.5%;
+      }
     }
 
     button {
@@ -56,12 +74,23 @@
       margin: 0 10px;
       width: 500px;
     }
+
+    @media (max-width: 480px) {
+      button {
+        margin: 0;
+        width: 100%;
+      }
+    }
   }
 
   .widget-key {
     display: inline-block;
     text-align: left;
     width: 250px;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
   }
 
   .widget-value {
@@ -69,7 +98,12 @@
     display: inline-block;
     height: 25px;
     margin: 5px 0;
+    padding-left: 5px;
     width: 250px;
+
+    @media (max-width: 480px) {
+      width: 98.5%;
+    }
   }
 
   .error {
