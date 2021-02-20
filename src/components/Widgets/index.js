@@ -25,7 +25,7 @@ const Widgets = ({ widgets }) => (
 
       switch (key) {
       case '_id':
-        return;
+        return null;
 
       case 'binDay':
         component = BinDay;

@@ -10,7 +10,7 @@ import './App.scss';
 
 class App extends Component {
   state = {
-    token: ''
+    token: 'fc77bb59002b3866e04c1bcd73fe087c',
     responseMessage: '',
     error: '',
     buttonDisabled: false,
@@ -28,7 +28,7 @@ class App extends Component {
     const { dispatch } = this.props;
 
     if (token) {
-      const response = await fetch(`/config?token=${token}`);
+      const response = await fetch(`http://localhost:3001/config?token=${token}`);
       const json = await response.json();
       const { message, config } = json;
 
@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ buttonDisabled: true });
     event.preventDefault();
 
-    const response = await fetch('/config', {
+    const response = await fetch('http://localhost:3001/config', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

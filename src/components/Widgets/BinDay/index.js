@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { toKeysAndValues, toSentence } from '../../../lib';
-import './index.scss';
 
 class BinDay extends Component {
   state = {
@@ -101,7 +100,7 @@ class BinDay extends Component {
           })
         ))}
 
-        <button className="bin-day-remove-button" onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
+        <button className="remove-button" onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
       </div>
     );
   }
@@ -126,7 +125,7 @@ class BinDay extends Component {
         <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
-        <p><button className="bin-day-add-button" onClick={this.addBin}>Add New Bin</button></p>
+        <p><button className="add-button" onClick={this.addBin}>Add New Bin</button></p>
       </div>
     );
   }
