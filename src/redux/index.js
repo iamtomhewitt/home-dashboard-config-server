@@ -5,6 +5,8 @@ const initalState = {
 };
 
 function reducer(state = initalState, action) {
+  console.log('Action: ', action.type);
+
   switch (action.type) {
   case 'CONFIG':
     return {
@@ -41,8 +43,16 @@ function reducer(state = initalState, action) {
     state.config.widgets.shoppingList = action.data;
     return state;
 
+  case 'SPLITWISE':
+    state.config.widgets.splitwise = action.data;
+    return state;
+
   case 'TODO_LIST':
     state.config.widgets.todoList = action.data;
+    return state;
+
+  case 'TRAINS':
+    state.config.widgets.trains = action.data;
     return state;
 
   case 'WEATHER':
