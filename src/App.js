@@ -7,6 +7,7 @@ import Dialogs from './components/Dialogs';
 import LoadingIcon from './components/LoadingIcon';
 import Widgets from './components/Widgets';
 import { toKeysAndValues } from './lib';
+import { version } from '../package.json';
 
 import './App.scss';
 
@@ -81,6 +82,7 @@ class App extends Component {
     return (
       <div className="app">
         <h1>Home Dashboard Settings</h1>
+        <span className="version">v{version}</span>
         <div className="token">
           <span>Token</span>
           <input onChange={this.onTokenInputChange} id="token" value={token} />

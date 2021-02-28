@@ -5,6 +5,14 @@
   padding: 10px;
   text-align: center;
 
+  h1 {
+    margin-bottom: 5px;
+  }
+
+  .version {
+    color: $version-colour;
+  }
+
   .save-button {
     background: $submit-button-colour;
     border: 0;
