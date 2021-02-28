@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import InputColor from 'react-input-color';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -19,20 +20,50 @@ class BasicItem extends Component {
         ...prevState.data,
         [event.target.id]: event.target.value,
       },
-    }), () => {
-      this.props.dispatch({
-        type: this.props.action,
-        data: this.state.data,
-      });
+    }), () => this.dispatchData());
+  }
+
+  onChangeColour = ({ hex }, key) => {
+    this.setState((prevState) => ({
+      data: {
+        ...prevState.data,
+        [key]: hex,
+      },
+    }), () => this.dispatchData());
+  }
+
+  dispatchData = () => {
+    this.props.dispatch({
+      type: this.props.action,
+      data: this.state.data,
     });
   }
 
-  renderItem = ({ key, value }) => (
-    <div key={key}>
-      <span className="widget-key">{toSentence(key)}</span>
-      <input className="widget-value" value={value} onChange={this.onChange} id={key} type={typeof (value)} />
-    </div>
-  );
+  renderItem = ({ key, value }) => {
+    const isColourItem = key.toLowerCase().includes('colour');
+    return (
+      <div key={key}>
+        <span className="widget-key">{toSentence(key)}</span>
+        {!isColourItem && <input className="widget-value" value={value} onChange={this.onChange} id={key} type={typeof (value)} />}
+
+        {isColourItem
+          && (
+            <InputColor
+              initialValue={value}
+              onChange={(e) => this.onChangeColour(e, key)}
+              style={{
+                backgroundColor: 'transparent',
+                height: '25px',
+                margin: '5px 0',
+                minWidth: '260px',
+                verticalAlign: 'middle',
+              }}
+            />
+          )}
+
+      </div>
+    );
+  }
 
   render() {
     const { data } = this.state;
