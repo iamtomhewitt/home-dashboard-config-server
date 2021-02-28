@@ -46,19 +46,20 @@ class BasicItem extends Component {
         <span className="widget-key">{toSentence(key)}</span>
         {!isColourItem && <input className="widget-value" value={value} onChange={this.onChange} id={key} type={typeof (value)} />}
 
-        {isColourItem &&
-          <InputColor
-            initialValue={value}
-            onChange={(e) => this.onChangeColour(e, key)}
-            style={{
-              backgroundColor: 'transparent',
-              height: '25px',
-              margin: '5px 0',
-              minWidth: '260px',
-              verticalAlign: 'middle',
-            }}
-          />
-        }
+        {isColourItem
+          && (
+            <InputColor
+              initialValue={value}
+              onChange={(e) => this.onChangeColour(e, key)}
+              style={{
+                backgroundColor: 'transparent',
+                height: '25px',
+                margin: '5px 0',
+                minWidth: '260px',
+                verticalAlign: 'middle',
+              }}
+            />
+          )}
 
       </div>
     );
