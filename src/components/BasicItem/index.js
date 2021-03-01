@@ -27,7 +27,7 @@ class BasicItem extends Component {
     this.setState((prevState) => ({
       data: {
         ...prevState.data,
-        [key]: hex,
+        [key]: hex.substring(0, 7),
       },
     }), () => this.dispatchData());
   }
