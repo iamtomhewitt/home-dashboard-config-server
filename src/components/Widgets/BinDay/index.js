@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import InputColor from 'react-input-color';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
 class BinDay extends Component {
@@ -73,7 +73,13 @@ class BinDay extends Component {
           ...prevState.data,
           [key]: hex.substring(0, 7),
         }
-      }))
+      }), () => {
+        this.props.dispatch({
+          type: this.props.action,
+          data: this.state.data,
+          bins: this.state.bins,
+        });
+      });
     }
   }
 
@@ -103,21 +109,7 @@ class BinDay extends Component {
       <div key={key}>
         <span className="widget-key">{title}</span>
         {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
-
-        {isColourItem
-          && (
-            <InputColor
-              initialValue={value}
-              onChange={(e) => this.onChangeColour(e, key)}
-              style={{
-                backgroundColor: 'transparent',
-                height: '25px',
-                margin: '5px 0',
-                minWidth: '260px',
-                verticalAlign: 'middle',
-              }}
-            />
-          )}
+        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} />}
       </div>
     );
   }
