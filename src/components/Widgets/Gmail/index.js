@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
 class Gmail extends Component {
@@ -36,6 +37,16 @@ class Gmail extends Component {
     this.setDataAndDispatch({ data });
   }
 
+  onChangeColour = ({ hex }, key, index) => {
+    const event = {
+      target: {
+        id: key,
+        value: hex.substring(0, 7),
+      }
+    }
+    this.onChangeGmail(event, index);
+  }
+
   addGmail = () => {
     const data = [...this.state.data];
     data.push({
@@ -60,14 +71,16 @@ class Gmail extends Component {
     this.setDataAndDispatch({ data });
   }
 
-  renderItem = ({
-    key, value, title, onChange, id,
-  }) => (
-    <div key={key}>
-      <span className="widget-key">{title}</span>
-      <input className="widget-value" value={value} onChange={onChange} id={id} />
-    </div>
-  )
+  renderItem = ({ key, value, title, onChange, id, index }) => {
+    const isColourItem = title.toLowerCase().includes('colour');
+    return (
+      <div key={key}>
+        <span className="widget-key">{title}</span>
+        {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
+        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />}
+      </div>
+    );
+  }
 
   renderGmail = (gmail, index) => {
     const props = toKeysAndValues(gmail);
@@ -83,6 +96,7 @@ class Gmail extends Component {
             title: toSentence(key),
             onChange: (e) => this.onChangeGmail(e, index),
             id: key,
+            index
           })
         ))}
 
