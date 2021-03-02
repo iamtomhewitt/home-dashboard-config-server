@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import InputColor from 'react-input-color';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ColourInput from '../ColourInput';
 import { toKeysAndValues, toSentence } from '../../lib';
 
 class BasicItem extends Component {
@@ -27,7 +27,7 @@ class BasicItem extends Component {
     this.setState((prevState) => ({
       data: {
         ...prevState.data,
-        [key]: hex,
+        [key]: hex.substring(0, 7),
       },
     }), () => this.dispatchData());
   }
@@ -45,22 +45,7 @@ class BasicItem extends Component {
       <div key={key}>
         <span className="widget-key">{toSentence(key)}</span>
         {!isColourItem && <input className="widget-value" value={value} onChange={this.onChange} id={key} type={typeof (value)} />}
-
-        {isColourItem
-          && (
-            <InputColor
-              initialValue={value}
-              onChange={(e) => this.onChangeColour(e, key)}
-              style={{
-                backgroundColor: 'transparent',
-                height: '25px',
-                margin: '5px 0',
-                minWidth: '260px',
-                verticalAlign: 'middle',
-              }}
-            />
-          )}
-
+        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} />}
       </div>
     );
   }

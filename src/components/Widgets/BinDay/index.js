@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
 class BinDay extends Component {
@@ -54,6 +55,34 @@ class BinDay extends Component {
     this.setBinsAndDispatch({ bins });
   }
 
+  onChangeColour = ({ hex }, key) => {
+    if (key.includes('-')) {
+      const keyParts = key.split('-');
+      const event = {
+        target: {
+          id: keyParts[0],
+          value: hex.substring(0, 7),
+        },
+      };
+      const index = keyParts[1];
+      this.onChangeBin(event, index);
+    }
+    else {
+      this.setState((prevState) => ({
+        data: {
+          ...prevState.data,
+          [key]: hex.substring(0, 7),
+        },
+      }), () => {
+        this.props.dispatch({
+          type: this.props.action,
+          data: this.state.data,
+          bins: this.state.bins,
+        });
+      });
+    }
+  }
+
   addBin = () => {
     const today = new Date();
     const month = String(today.getMonth()).padStart(2, '0');
@@ -74,14 +103,16 @@ class BinDay extends Component {
     this.setBinsAndDispatch({ bins });
   }
 
-  renderItem = ({
-    key, value, title, onChange, id,
-  }) => (
-    <div key={key}>
-      <span className="widget-key">{title}</span>
-      <input className="widget-value" value={value} onChange={onChange} id={id} />
-    </div>
-  )
+  renderItem = ({ key, value, title, onChange, id }) => {
+    const isColourItem = title.toLowerCase().includes('colour');
+    return (
+      <div key={key}>
+        <span className="widget-key">{title}</span>
+        {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
+        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} />}
+      </div>
+    );
+  }
 
   renderBin = ({ bin, index }) => {
     const props = toKeysAndValues(bin);
