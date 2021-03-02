@@ -42,8 +42,8 @@ class Gmail extends Component {
       target: {
         id: key,
         value: hex.substring(0, 7),
-      }
-    }
+      },
+    };
     this.onChangeGmail(event, index);
   }
 
@@ -96,7 +96,7 @@ class Gmail extends Component {
             title: toSentence(key),
             onChange: (e) => this.onChangeGmail(e, index),
             id: key,
-            index
+            index,
           })
         ))}
 
