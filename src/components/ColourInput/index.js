@@ -1,5 +1,6 @@
 import React from 'react';
-import InputColor from "react-input-color";
+import PropTypes from 'prop-types';
+import InputColor from 'react-input-color';
 
 const ColourInput = ({ value, onChange }) => (
   <InputColor
@@ -13,6 +14,11 @@ const ColourInput = ({ value, onChange }) => (
       verticalAlign: 'middle',
     }}
   />
-)
+);
+
+ColourInput.propTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.any,
+};
 
 export default ColourInput;

@@ -62,17 +62,17 @@ class BinDay extends Component {
         target: {
           id: keyParts[0],
           value: hex.substring(0, 7),
-        }
-      }
-      const index = keyParts[1]
-      this.onChangeBin(event, index)
+        },
+      };
+      const index = keyParts[1];
+      this.onChangeBin(event, index);
     }
     else {
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
           [key]: hex.substring(0, 7),
-        }
+        },
       }), () => {
         this.props.dispatch({
           type: this.props.action,
@@ -103,7 +103,7 @@ class BinDay extends Component {
     this.setBinsAndDispatch({ bins });
   }
 
-  renderItem = ({ key, value, title, onChange, id, }) => {
+  renderItem = ({ key, value, title, onChange, id }) => {
     const isColourItem = title.toLowerCase().includes('colour');
     return (
       <div key={key}>

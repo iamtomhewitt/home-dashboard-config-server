@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
 class JourneyPlanner extends Component {
@@ -54,6 +55,16 @@ class JourneyPlanner extends Component {
     this.setJourneysAndDispatch({ journeys });
   }
 
+  onChangeColour = ({ hex }, key, index) => {
+    const event = {
+      target: {
+        id: key,
+        value: hex.substring(0, 7),
+      },
+    };
+    this.onChange(event, index);
+  }
+
   addJourney = () => {
     const journeys = [...this.state.journeys];
     journeys.push({
@@ -70,14 +81,16 @@ class JourneyPlanner extends Component {
     this.setJourneysAndDispatch({ journeys });
   }
 
-  renderItem = ({
-    key, value, title, onChange, id,
-  }) => (
-    <div key={key}>
-      <span className="widget-key">{title}</span>
-      <input className="widget-value" value={value} onChange={onChange} id={id} />
-    </div>
-  )
+  renderItem = ({ key, value, title, onChange, id, index }) => {
+    const isColourItem = title.toLowerCase().includes('colour');
+    return (
+      <div key={key}>
+        <span className="widget-key">{title}</span>
+        {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
+        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />}
+      </div>
+    );
+  }
 
   renderJourney = (journey, index) => {
     const props = toKeysAndValues(journey);
@@ -93,6 +106,7 @@ class JourneyPlanner extends Component {
             title: toSentence(key),
             onChange: (e) => this.onChangeJourney(e, index),
             id: key,
+            index,
           })
         ))}
 
