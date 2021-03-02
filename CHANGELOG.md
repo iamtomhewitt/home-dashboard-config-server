@@ -1,3 +1,12 @@
+## 1.2.0 (02/03/2021) 
+
+
+### Issues in this release:
+
+* [#4](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/4) - Make colour config colour picker for non common config
+
+
+
 ## 1.1.0 (28/02/2021) 
 
 
