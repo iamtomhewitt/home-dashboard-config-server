@@ -1,3 +1,12 @@
+## 1.2.1 (08/10/2021) 
+
+
+### Issues in this release:
+
+* [#7](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/7) - Move to Firebase
+
+
+
 ## 1.2.0 (02/03/2021) 
 
 
