@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import BACKEND_URL from './config';
 import Dialogs from './components/Dialogs';
 import LoadingIcon from './components/LoadingIcon';
 import Widgets from './components/Widgets';
@@ -18,6 +17,7 @@ class App extends Component {
     error: '',
     buttonDisabled: false,
     loading: false,
+    tokenIndex: 0,
   }
 
   componentDidMount() {
@@ -27,40 +27,42 @@ class App extends Component {
     }
   }
 
+  onTokenInputChange = (event) => {
+    const { id, value } = event.target;
+    this.setState({ [id]: value });
+  }
+
   getConfig = async () => {
     const { token } = this.state;
     const { dispatch } = this.props;
 
     if (token) {
       this.setState({ loading: true });
-      const response = await fetch(`${BACKEND_URL}/config?token=${token}`);
+      const response = await fetch(`${process.env.REACT_APP_FIREBASE}.json`);
       const json = await response.json();
-      const { message, config } = json;
+      const configForToken = json.filter((x) => x.token === token)[0];
+      const indexForConfig = json.findIndex((x) => x.token === token);
 
-      this.setState({ error: message, loading: false });
-      dispatch({ type: 'CONFIG', config });
+      if (configForToken.length <= 0) {
+        this.setState({ error: `Could not find config for token '${token}'`, loading: false });
+      }
+      else {
+        this.setState({ loading: false, tokenIndex: indexForConfig });
+        dispatch({ type: 'CONFIG', config: configForToken });
+      }
     } else {
       this.setState({ error: 'Please enter a token', loading: false });
       dispatch({ type: 'CONFIG', config: {} });
     }
   }
 
-  onTokenInputChange = (event) => {
-    const { id, value } = event.target;
-    this.setState({ [id]: value });
-  }
-
   onSave = async (event) => {
-    this.setState({ buttonDisabled: true });
     event.preventDefault();
+    this.setState({ buttonDisabled: true });
 
-    const response = await fetch(`${BACKEND_URL}/config`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token: this.state.token,
-        config: this.props.config,
-      }),
+    const response = await fetch(`${process.env.REACT_APP_FIREBASE}/${this.state.tokenIndex}/.json`, {
+      method: 'PUT',
+      body: JSON.stringify(this.props.config),
     });
 
     const { ok } = response;
