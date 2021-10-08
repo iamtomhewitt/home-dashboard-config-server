@@ -33,12 +33,17 @@ class App extends Component {
 
     if (token) {
       this.setState({ loading: true });
-      const response = await fetch(`${BACKEND_URL}/config?token=${token}`);
+      const response = await fetch(`${process.env.REACT_APP_FIREBASE}.json`);
       const json = await response.json();
-      const { message, config } = json;
+      const configForToken = json.filter((x) => x.token === token)[0];
 
-      this.setState({ error: message, loading: false });
-      dispatch({ type: 'CONFIG', config });
+      if (configForToken.length <= 0) {
+        this.setState({ error: `Could not find config for token '${token}'`, loading: false });
+      }
+      else {
+        this.setState({ loading: false });
+        dispatch({ type: 'CONFIG', config: configForToken });
+      }
     } else {
       this.setState({ error: 'Please enter a token', loading: false });
       dispatch({ type: 'CONFIG', config: {} });
