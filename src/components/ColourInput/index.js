@@ -12,6 +12,7 @@ const ColourInput = ({ value, onChange }) => (
       margin: '5px 0',
       minWidth: '260px',
       verticalAlign: 'middle',
+      width: '100%',
     }}
   />
 );

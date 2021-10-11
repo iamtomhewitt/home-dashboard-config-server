@@ -7,15 +7,10 @@ import Gmail from './Gmail';
 import JourneyPlanner from './JourneyPlanner';
 import { toUpperSnakeCase } from '../../lib';
 
-const renderWidget = (Component, { key, value, action }) => (
-  <div key={key}>
-    <Component key={key} data={value} action={action} />
-  </div>
-);
+const renderWidget = (Component, { key, value, action }) => <Component key={key} data={value} action={action} />;
 
 const Widgets = ({ widgets }) => (
-  <div className="items">
-    <h2>Widgets</h2>
+  <div>
     {widgets.map((widget) => {
       const { key, value } = widget;
       const action = toUpperSnakeCase(key);
