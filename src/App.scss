@@ -1,134 +1,248 @@
 @import './scss/colours';
 
 .app {
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-
   h1 {
-    margin-bottom: 5px;
+    background-color: $primary-colour;
+    color: $white;
+    font-weight: lighter;
+    letter-spacing: 5px;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
   }
 
-  .version {
-    color: $version-colour;
-  }
-
-  .save-button {
-    background: $submit-button-colour;
-    border: 0;
-    color: $button-text-colour;
-    font-weight: bold;
-    height: 40px;
-    width: 500px;
-
-    @media (max-width: 480px) {
-      width: 100%;
-    }
-  }
-
-  .add-button {
-    background: $add-button-colour;
-    border: 0;
-    color: $button-text-colour;
-    height: 40px;
-    max-width: 508px;
-    width: 100%;
-  }
-
-  .remove-button {
-    background: $remove-button-colour;
-    border: 0;
-    color: $button-text-colour;
-    height: 35px;
+  &-version {
+    color: $label-colour;
     margin: 10px 0;
-    max-width: 508px;
-    width: 100%;
+    text-align: center;
   }
 
-  .token {
-    span {
-      display: inline-block;
-      text-align: left;
-      width: 250px;
-    }
+  &-token {
+    background-color: $white;
+    border-radius: 20px;
+    margin: auto;
+    min-width: 60%;
+    padding: 20px 10px;
+    width: fit-content;
 
-    @media (max-width: 480px) {
-      span {
-        width: 100%;
-      }
+    &-label {
+      color: $label-colour;
     }
 
     input {
       border: 1px solid $input-border-colour;
-      display: inline-block;
+      box-sizing: border-box;
       height: 25px;
       margin: 5px 0;
-      width: 250px;
-    }
-
-    @media (max-width: 480px) {
-      input {
-        border: 1px solid $input-border-colour;
-        margin: 0;
-        width: 98.5%;
-      }
+      width: 100%;
     }
 
     button {
-      background: $submit-button-colour;
+      background: $primary-colour;
       border: 0;
       color: $button-text-colour;
+      display: block;
       height: 30px;
-      margin: 0 10px;
-      width: 500px;
-    }
-
-    @media (max-width: 480px) {
-      button {
-        margin: 0;
-        width: 100%;
-      }
-    }
-  }
-
-  .widget-key {
-    display: inline-block;
-    text-align: left;
-    width: 250px;
-
-    @media (max-width: 480px) {
+      letter-spacing: 2px;
+      margin: 0 auto;
+      text-transform: uppercase;
       width: 100%;
     }
   }
 
-  .widget-value {
-    border: 1px solid $input-border-colour;
-    display: inline-block;
-    height: 25px;
-    margin: 5px 0;
-    padding-left: 5px;
-    width: 250px;
-
-    @media (max-width: 480px) {
-      width: 98.5%;
-    }
+  &-loading {
+    margin: 10px auto;
+    text-align: center;
   }
 
-  .error {
+  &-error {
     color: $error-colour;
-    font-weight: bold;
+    margin: 10px auto;
+    text-align: center;
   }
 
-  .response-message {
+  &-response-message {
     color: $success-colour;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  &-save-button {
+    background: $primary-colour;
+    border: 0;
+    color: $button-text-colour;
+    display: block;
     font-weight: bold;
-    margin: 15px 0;
+    height: 40px;
+    letter-spacing: 2px;
+    margin: 10px auto;
+    text-transform: uppercase;
+    width: 80%;
   }
 }
 
-.items {
-  hr {
-    margin-top: 40px;
-    max-width: 500px;
-  }
-}
+// .app {
+//   text-align: center;
+
+//   h1 {
+//     margin: 0;
+//     margin-bottom: 10px;
+//     padding: 10px 0;
+//     background-color: $primary-colour;
+//     color: white;
+//     letter-spacing: 5px;
+//     font-weight: lighter;
+//     text-transform: uppercase;
+//   }
+
+//   .version {
+//     color: $label-colour;
+//   }
+
+//   .save-button {
+//     // background: $submit-button-colour;
+//     background: $primary-colour;
+//     border: 0;
+//     color: $button-text-colour;
+//     font-weight: bold;
+//     height: 40px;
+//     width: 500px;
+
+//     @media (max-width: 480px) {
+//       width: 100%;
+//     }
+//   }
+
+//   .add-button {
+//     background: $add-button-colour;
+//     border: 0;
+//     color: $button-text-colour;
+//     height: 40px;
+//     max-width: 508px;
+//     width: 100%;
+//   }
+
+//   .remove-button {
+//     background: $remove-button-colour;
+//     border: 0;
+//     color: $button-text-colour;
+//     height: 35px;
+//     margin: 10px 0;
+//     max-width: 508px;
+//     width: 100%;
+//   }
+
+//   .token {
+//     margin: auto;
+//     width: fit-content;
+//     border-radius: 20px;
+//     background-color: white;
+//     padding: 10px;
+
+//     span {
+//       display: inline-block;
+//       text-align: left;
+//       width: 250px;
+//     }
+
+//     @media (max-width: 480px) {
+//       span {
+//         width: 100%;
+//       }
+//     }
+
+//     input {
+//       border: 1px solid $input-border-colour;
+//       display: inline-block;
+//       height: 25px;
+//       margin: 5px 0;
+//       width: 250px;
+//     }
+
+//     @media (max-width: 480px) {
+//       input {
+//         border: 1px solid $input-border-colour;
+//         margin: 0;
+//         width: 98.5%;
+//       }
+//     }
+
+//     button {
+//       // background: $submit-button-colour;
+//       background: $primary-colour;
+//       text-transform: uppercase;
+
+//       border: 0;
+//       color: $button-text-colour;
+//       height: 30px;
+//       margin: 0 10px;
+//       width: 500px;
+//       letter-spacing: 2px;
+//     }
+
+//     @media (max-width: 480px) {
+//       button {
+//         margin: 0;
+//         width: 100%;
+//       }
+//     }
+//   }
+
+//   .widget-key {
+//     display: inline-block;
+//     text-align: left;
+//     width: 250px;
+
+//     @media (max-width: 480px) {
+//       width: 100%;
+//     }
+//   }
+
+//   .widget-value {
+//     border: 1px solid $input-border-colour;
+//     display: inline-block;
+//     height: 25px;
+//     margin: 5px 0;
+//     padding-left: 5px;
+//     width: 250px;
+
+//     @media (max-width: 480px) {
+//       width: 98.5%;
+//     }
+//   }
+
+//   .error {
+//     color: $error-colour;
+//     font-weight: bold;
+//   }
+
+//   .response-message {
+//     color: $success-colour;
+//     font-weight: bold;
+//     margin: 15px 0;
+//   }
+// }
+
+// .items {
+//   text-align: center;
+//   hr {
+//     margin-top: 40px;
+//     max-width: 500px;
+//   }
+
+//   .basic {
+//     display: inline-block;
+//     width: fit-content;
+//     border-radius: 20px;
+//     background-color: white;
+//     padding: 10px;
+//     margin-bottom: 25px;
+
+//     h3 {
+//       margin: 0 0 10px;
+//       font-weight: lighter;
+//     }
+//   }
+// }

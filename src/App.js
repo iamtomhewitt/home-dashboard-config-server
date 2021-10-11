@@ -80,26 +80,33 @@ class App extends Component {
     const { error, token, responseMessage, buttonDisabled, loading } = this.state;
     const { config } = this.props;
     const { widgets, dialogs } = config || {};
+    const loadedConfig = !loading && widgets;
 
     return (
       <div className="app">
         <h1>Home Dashboard Settings</h1>
-        <span className="version">v{version}</span>
-        <div className="token">
-          <span>Token</span>
-          <input onChange={this.onTokenInputChange} id="token" value={token} />
-          <p><button onClick={this.getConfig}>Get Settings</button></p>
-        </div>
+        {!loadedConfig
+          && (
+            <>
+              <div className="app-version">v{version}</div>
+              <div className="app-token">
+                <div className="app-token-label">Token</div>
+                <input onChange={this.onTokenInputChange} id="token" value={token} />
+                <button onClick={this.getConfig}>Get Settings</button>
+              </div>
+            </>
+          )}
 
-        {loading && <LoadingIcon />}
+        {loading && <div className="app-loading"><LoadingIcon /></div>}
 
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
         {dialogs && <Dialogs dialogs={toKeysAndValues(dialogs)} />}
 
-        {error && <div className="error">Error: {error}</div>}
+        {error && <div className="app-error">Error: {error}</div>}
 
-        {responseMessage && <div className="response-message">{responseMessage}</div>}
-        {widgets && <button className="save-button" onClick={this.onSave} disabled={buttonDisabled}>Save All</button>}
+        {responseMessage && <div className="app-response-message">{responseMessage}</div>}
+
+        {widgets && <button className="app-save-button" onClick={this.onSave} disabled={buttonDisabled}>Save All</button>}
       </div>
     );
   }
