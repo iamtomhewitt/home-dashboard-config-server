@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
+import './index.scss';
+
 class JourneyPlanner extends Component {
   state = {
     data: {},
@@ -17,9 +19,7 @@ class JourneyPlanner extends Component {
   }
 
   setJourneysAndDispatch = ({ journeys }) => {
-    this.setState(() => ({
-      journeys,
-    }), () => {
+    this.setState(() => ({ journeys }), () => {
       const { dispatch, action } = this.props;
       const { data, journeys } = this.state;
       dispatch({
@@ -84,18 +84,19 @@ class JourneyPlanner extends Component {
   renderItem = ({ key, value, title, onChange, id, index }) => {
     const isColourItem = title.toLowerCase().includes('colour');
     return (
-      <div key={key}>
-        <span className="widget-key">{title}</span>
-        {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
-        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />}
+      <div key={key} className="journeys-journey">
+        <span className="journeys-journey-key">{title}</span>
+        {isColourItem
+          ? <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />
+          : <input value={value} onChange={onChange} id={id} />}
       </div>
     );
   }
 
   renderJourney = (journey, index) => {
     const props = toKeysAndValues(journey);
-
     const { name } = journey;
+
     return (
       <div key={index}>
         <h4>{name}</h4>
@@ -110,7 +111,7 @@ class JourneyPlanner extends Component {
           })
         ))}
 
-        <button className="remove-button" onClick={(e) => this.removeJourney(e, journey)}>Remove '{name}'</button>
+        <button className="journeys-journey-remove" onClick={(e) => this.removeJourney(e, journey)}>Remove '{name}'</button>
       </div>
     );
   }
@@ -131,21 +132,21 @@ class JourneyPlanner extends Component {
     });
 
     return (
-      <div className="journey">
+      <div className="journeys">
         <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {journeys.map((journey, index) => this.renderJourney(journey, index))}
-        <p><button className="add-button" onClick={this.addJourney}>Add Journey</button></p>
+        <button className="journeys-add" onClick={this.addJourney}>Add Journey</button>
       </div>
     );
   }
 }
 
 JourneyPlanner.propTypes = {
-  data: PropTypes.object,
-  journeys: PropTypes.array,
-  dispatch: PropTypes.func,
   action: PropTypes.string,
+  data: PropTypes.object,
+  dispatch: PropTypes.func,
+  journeys: PropTypes.array,
 };
 
 export default connect()(JourneyPlanner);
