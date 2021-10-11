@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ColourInput from '../ColourInput';
 import { toKeysAndValues, toSentence } from '../../lib';
 
+import './index.scss';
+
 class BasicItem extends Component {
   state = {
     data: {},
@@ -42,10 +44,11 @@ class BasicItem extends Component {
   renderItem = ({ key, value }) => {
     const isColourItem = key.toLowerCase().includes('colour');
     return (
-      <div key={key}>
-        <span className="widget-key">{toSentence(key)}</span>
-        {!isColourItem && <input className="widget-value" value={value} onChange={this.onChange} id={key} type={typeof (value)} />}
-        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} />}
+      <div key={key} className="basic-item-item">
+        <div className="basic-item-item-key">{toSentence(key)}</div>
+        {isColourItem
+          ? <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} />
+          : <input value={value} onChange={this.onChange} id={key} type={typeof (value)} />}
       </div>
     );
   }
@@ -56,18 +59,18 @@ class BasicItem extends Component {
     const pairs = toKeysAndValues(data);
 
     return (
-      <div className="basic">
+      <div className="basic-item">
         <h3>{title || 'Enter Name'}</h3>
-        {pairs.map((pair) => this.renderItem(pair))}
+        {pairs.map(this.renderItem)}
       </div>
     );
   }
 }
 
 BasicItem.propTypes = {
+  action: PropTypes.string,
   data: PropTypes.object,
   dispatch: PropTypes.func,
-  action: PropTypes.string,
 };
 
 export default connect()(BasicItem);
