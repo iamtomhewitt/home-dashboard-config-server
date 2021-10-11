@@ -1,6 +1,19 @@
-$background-colour: #e8e8e8;
+$background-colour: #E8E9F7;
+$label-colour: rgb(170, 170, 170);
+$error-colour: rgb(207, 54, 54);
+$success-colour: rgb(123, 207, 54);
+$primary-colour: #5a7bfd;
+$white: #FFF;
+
+
+
+
+
+
+
+
+// TODO remove these when done
 $text-colour: #333;
-$version-colour: rgb(170, 170, 170);
 
 $add-button-colour: #248cb3;
 $remove-button-colour: #e8514d;
@@ -9,5 +22,3 @@ $button-text-colour: #fff;
 
 $input-border-colour: #cbd5d9;
 
-$error-colour: rgb(207, 54, 54);
-$success-colour: rgb(123, 207, 54);

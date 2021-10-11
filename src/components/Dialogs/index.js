@@ -15,7 +15,6 @@ const Dialogs = ({ dialogs }) => (
       return (
         <div key={key}>
           <BasicItem key={key} data={value} action={action} />
-          <hr />
         </div>
       );
     })}

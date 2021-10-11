@@ -10,7 +10,6 @@ import { toUpperSnakeCase } from '../../lib';
 const renderWidget = (Component, { key, value, action }) => (
   <div key={key}>
     <Component key={key} data={value} action={action} />
-    <hr />
   </div>
 );
 
