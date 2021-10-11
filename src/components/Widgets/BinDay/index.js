@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
+import './index.scss';
+
 class BinDay extends Component {
   state = {
     data: {},
@@ -106,8 +108,8 @@ class BinDay extends Component {
   renderItem = ({ key, value, title, onChange, id }) => {
     const isColourItem = title.toLowerCase().includes('colour');
     return (
-      <div key={key}>
-        <span className="widget-key">{title}</span>
+      <div key={key} className="bin-day-item">
+        <div className="bin-day-item-key">{title}</div>
         {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
         {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} />}
       </div>
@@ -118,7 +120,7 @@ class BinDay extends Component {
     const props = toKeysAndValues(bin);
     const { name } = bin;
     return (
-      <div key={index}>
+      <div key={index} className="bin-day-bin">
         <h4>Bin ({name})</h4>
 
         {props.map(({ key, value }) => (
@@ -131,7 +133,7 @@ class BinDay extends Component {
           })
         ))}
 
-        <button className="remove-button" onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
+        <button className="bin-day-bin-remove" onClick={(e) => this.removeBin(e, bin)}>Remove '{name}'</button>
       </div>
     );
   }
@@ -156,7 +158,7 @@ class BinDay extends Component {
         <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {bins.map((bin, index) => this.renderBin({ bin, index }))}
-        <p><button className="add-button" onClick={this.addBin}>Add New Bin</button></p>
+        <button className="bin-day-add" onClick={this.addBin}>Add New Bin</button>
       </div>
     );
   }
