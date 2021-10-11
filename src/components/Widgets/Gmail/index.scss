@@ -1,0 +1,55 @@
+@import "../../../scss/colours.scss";
+
+.gmail {
+  background-color: $white;
+  border-radius: 20px;
+  margin: 30px auto;
+  min-width: 60%;
+  padding: 10px;
+  width: fit-content;
+
+  h3 {
+    margin: 0 0 10px;
+    font-weight: lighter;
+  }
+
+  &-item {
+    margin-bottom: 5px;
+
+    &-key {
+      color: $label-colour;
+    }
+
+    input {
+      border: 1px solid $input-border-colour;
+      box-sizing: border-box;
+      height: 25px;
+      margin: 5px 0;
+      width: 100%;
+    }
+
+      &-remove {
+      background: $primary-colour;
+      border: 0;
+      color: $button-text-colour;
+      display: block;
+      height: 30px;
+      letter-spacing: 2px;
+      margin: 0 auto;
+      text-transform: uppercase;
+      width: 100%;
+    }
+  }
+
+  &-add {
+    background: $primary-colour;
+    border: 0;
+    color: $button-text-colour;
+    display: block;
+    height: 30px;
+    letter-spacing: 2px;
+    margin: 10px auto;
+    text-transform: uppercase;
+    width: 100%;
+  }
+}

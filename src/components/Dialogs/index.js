@@ -5,8 +5,7 @@ import BasicItem from '../BasicItem';
 import { toSentence, toUpperSnakeCase } from '../../lib';
 
 const Dialogs = ({ dialogs }) => (
-  <div className="items">
-    <h2>Dialogs</h2>
+  <div>
     {dialogs.map((dialog) => {
       const { key, value } = dialog;
       const action = `DIALOG_${toUpperSnakeCase(key)}`;
@@ -15,7 +14,6 @@ const Dialogs = ({ dialogs }) => (
       return (
         <div key={key}>
           <BasicItem key={key} data={value} action={action} />
-          <hr />
         </div>
       );
     })}
