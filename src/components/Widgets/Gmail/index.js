@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ColourInput from '../../ColourInput';
 import { toKeysAndValues, toSentence } from '../../../lib';
 
+import './index.scss';
+
 class Gmail extends Component {
   state = {
     data: [],
@@ -75,19 +77,20 @@ class Gmail extends Component {
     const isColourItem = title.toLowerCase().includes('colour');
     return (
       <div key={key}>
-        <span className="widget-key">{title}</span>
-        {!isColourItem && <input className="widget-value" value={value} onChange={onChange} id={id} />}
-        {isColourItem && <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />}
+        <span className="gmail-item-key">{title}</span>
+        {isColourItem
+          ? <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />
+          : <input className="widget-value" value={value} onChange={onChange} id={id} />}
       </div>
     );
   }
 
   renderGmail = (gmail, index) => {
     const props = toKeysAndValues(gmail);
-
     const { gmailAddress } = gmail;
+
     return (
-      <div key={index}>
+      <div key={index} className="gmail-item">
         <h4>{gmailAddress}</h4>
         {props.map(({ key, value }) => (
           this.renderItem({
@@ -100,7 +103,7 @@ class Gmail extends Component {
           })
         ))}
 
-        <button className="remove-button" onClick={(e) => this.removeGmail(e, gmail)}>Remove '{gmailAddress}'</button>
+        <button className="gmail-item-remove" onClick={(e) => this.removeGmail(e, gmail)}>Remove '{gmailAddress}'</button>
       </div>
     );
   }
@@ -112,7 +115,7 @@ class Gmail extends Component {
       <div className="gmail">
         <h3>Gmail</h3>
         {data.map((item, index) => this.renderGmail(item, index))}
-        <p><button className="add-button" onClick={this.addGmail}>Add Gmail</button></p>
+        <button className="gmail-add" onClick={this.addGmail}>Add Gmail</button>
       </div>
     );
   }
