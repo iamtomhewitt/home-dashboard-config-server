@@ -15,7 +15,6 @@ class App extends Component {
     token: '',
     responseMessage: '',
     error: '',
-    buttonDisabled: false,
     loading: false,
     tokenIndex: 0,
   }
@@ -58,7 +57,6 @@ class App extends Component {
 
   onSave = async (event) => {
     event.preventDefault();
-    this.setState({ buttonDisabled: true });
 
     const response = await fetch(`${process.env.REACT_APP_FIREBASE}/${this.state.tokenIndex}/.json`, {
       method: 'PUT',
@@ -70,14 +68,14 @@ class App extends Component {
     const { message } = json;
 
     if (!ok) {
-      this.setState({ error: message, buttonDisabled: false });
+      this.setState({ error: message });
     } else {
-      this.setState({ responseMessage: message, buttonDisabled: false });
+      this.setState({ responseMessage: 'Config saved!' });
     }
   }
 
   render() {
-    const { error, token, responseMessage, buttonDisabled, loading } = this.state;
+    const { error, token, responseMessage, loading } = this.state;
     const { config } = this.props;
     const { widgets, dialogs } = config || {};
     const loadedConfig = !loading && widgets;
@@ -106,7 +104,7 @@ class App extends Component {
 
         {responseMessage && <div className="app-response-message">{responseMessage}</div>}
 
-        {widgets && <button className="app-save-button" onClick={this.onSave} disabled={buttonDisabled}>Save All</button>}
+        {widgets && <button className="app-save-button" onClick={this.onSave} disabled={loading}>Save All</button>}
       </div>
     );
   }
