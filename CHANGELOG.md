@@ -1,3 +1,12 @@
+## 1.2.3 (16/11/2021) 
+
+
+### Issues in this release:
+
+* [#11](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/11) - No successful save message is shown when pressing save all
+
+
+
 ## 1.2.2 (11/10/2021) 
 
 
