@@ -1,11 +1,11 @@
 {
     "name": "home-dashboard-config-server",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "private": true,
     "author": "Tom Hewitt",
     "scripts": {
         "build": "react-scripts build",
-		"coverage": "npm test >> coverage.txt",
+        "coverage": "npm test >> coverage.txt",
         "eject": "react-scripts eject",
         "lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
         "lint-fix": "eslint --ignore-path .gitignore . --fix",
