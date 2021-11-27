@@ -5,6 +5,7 @@
     "author": "Tom Hewitt",
     "scripts": {
         "build": "react-scripts build",
+		"coverage": "npm test >> coverage.txt",
         "eject": "react-scripts eject",
         "lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
         "lint-fix": "eslint --ignore-path .gitignore . --fix",
@@ -12,8 +13,7 @@
         "release": "github-releaser",
         "start": "react-scripts start",
         "start-heroku": "serve -s build",
-        "test-usethis": "jest --coverage --coverageReporters='text' --detectOpenHandles",
-        "test": "jest --coverage --detectOpenHandles"
+        "test": "jest --coverage --coverageReporters='text' --detectOpenHandles"
     },
     "repository": {
         "type": "git",
