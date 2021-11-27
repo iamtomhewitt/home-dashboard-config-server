@@ -44,8 +44,7 @@ class App extends Component {
 
       if (configForToken.length <= 0) {
         this.setState({ error: `Could not find config for token '${token}'`, loading: false });
-      }
-      else {
+      } else {
         this.setState({ loading: false, tokenIndex: indexForConfig });
         dispatch({ type: 'CONFIG', config: configForToken });
       }
@@ -81,30 +80,30 @@ class App extends Component {
     const loadedConfig = !loading && widgets;
 
     return (
-      <div className="app">
+      <div className='app'>
         <h1>Home Dashboard Settings</h1>
         {!loadedConfig
           && (
             <>
-              <div className="app-version">v{version}</div>
-              <div className="app-token">
-                <div className="app-token-label">Token</div>
-                <input onChange={this.onTokenInputChange} id="token" value={token} />
+              <div className='app-version'>v{version}</div>
+              <div className='app-token'>
+                <div className='app-token-label'>Token</div>
+                <input onChange={this.onTokenInputChange} id='token' value={token} />
                 <button onClick={this.getConfig}>Get Settings</button>
               </div>
             </>
           )}
 
-        {loading && <div className="app-loading"><LoadingIcon /></div>}
+        {loading && <div className='app-loading'><LoadingIcon /></div>}
 
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
         {dialogs && <Dialogs dialogs={toKeysAndValues(dialogs)} />}
 
-        {error && <div className="app-error">Error: {error}</div>}
+        {error && <div className='app-error'>Error: {error}</div>}
 
-        {responseMessage && <div className="app-response-message">{responseMessage}</div>}
+        {responseMessage && <div className='app-response-message'>{responseMessage}</div>}
 
-        {widgets && <button className="app-save-button" onClick={this.onSave} disabled={loading}>Save All</button>}
+        {widgets && <button className='app-save-button' onClick={this.onSave} disabled={loading}>Save All</button>}
       </div>
     );
   }

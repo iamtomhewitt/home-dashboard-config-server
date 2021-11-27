@@ -18,9 +18,9 @@ const props = {
     sleepEnd: '06:00',
     sleepStart: '23:59',
     textColour: '#ffffff',
-    title: 'A title'
-  }
-}
+    title: 'A title',
+  },
+};
 
 describe('<BasicItem/>', () => {
   it('renders', () => {
@@ -29,9 +29,9 @@ describe('<BasicItem/>', () => {
     const { getAllByTestId } = render(
       <Provider store={store}>
         <BasicItem {...props} />
-      </Provider>
+      </Provider>,
     );
 
     expect(getAllByTestId('basic-item')).toHaveLength(1);
-  })
-})
+  });
+});

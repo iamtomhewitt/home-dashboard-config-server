@@ -84,8 +84,8 @@ class JourneyPlanner extends Component {
   renderItem = ({ key, value, title, onChange, id, index }) => {
     const isColourItem = title.toLowerCase().includes('colour');
     return (
-      <div key={key} className="journeys-journey">
-        <span className="journeys-journey-key">{title}</span>
+      <div key={key} className='journeys-journey'>
+        <span className='journeys-journey-key'>{title}</span>
         {isColourItem
           ? <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />
           : <input value={value} onChange={onChange} id={id} />}
@@ -98,7 +98,7 @@ class JourneyPlanner extends Component {
     const { name } = journey;
 
     return (
-      <div key={index}>
+      <div key={index} data-test-id='journey-item'>
         <h4>{name}</h4>
         {props.map(({ key, value }) => (
           this.renderItem({
@@ -111,7 +111,7 @@ class JourneyPlanner extends Component {
           })
         ))}
 
-        <button className="journeys-journey-remove" onClick={(e) => this.removeJourney(e, journey)}>Remove '{name}'</button>
+        <button className='journeys-journey-remove' onClick={(e) => this.removeJourney(e, journey)} data-test-id='journey-remove-journey'>Remove '{name}'</button>
       </div>
     );
   }
@@ -132,11 +132,11 @@ class JourneyPlanner extends Component {
     });
 
     return (
-      <div className="journeys">
+      <div className='journeys' data-test-id='journeys'>
         <h3>{data.title}</h3>
         {items.map((item) => this.renderItem(item))}
         {journeys.map((journey, index) => this.renderJourney(journey, index))}
-        <button className="journeys-add" onClick={this.addJourney}>Add Journey</button>
+        <button className='journeys-add' onClick={this.addJourney} data-test-id='journey-add-journey'>Add Journey</button>
       </div>
     );
   }

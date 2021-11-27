@@ -43,10 +43,10 @@ class BasicItem extends Component {
 
   renderItem = ({ key, value }) => {
     const isColourItem = key.toLowerCase().includes('colour');
-    const dataTestId = `basic-item-${key}`
+    const dataTestId = `basic-item-${key}`;
     return (
-      <div key={key} className="basic-item-item">
-        <div className="basic-item-item-key">{toSentence(key)}</div>
+      <div key={key} className='basic-item-item'>
+        <div className='basic-item-item-key'>{toSentence(key)}</div>
         {isColourItem
           ? <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key)} data-test-id={dataTestId} />
           : <input value={value} onChange={this.onChange} id={key} type={typeof (value)} data-test-id={dataTestId} />}
@@ -60,7 +60,7 @@ class BasicItem extends Component {
     const pairs = toKeysAndValues(data);
 
     return (
-      <div className="basic-item" data-test-id='basic-item'>
+      <div className='basic-item' data-test-id='basic-item'>
         <h3>{title || 'Enter Name'}</h3>
         {pairs.map(this.renderItem)}
       </div>
