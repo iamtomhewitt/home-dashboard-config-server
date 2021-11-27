@@ -1,7 +1,8 @@
 {
 	"env": {
 		"browser": true,
-		"es6": true
+		"es6": true,
+		"jest": true
 	},
 	"extends": [
 		"plugin:react/recommended",
@@ -51,7 +52,11 @@
 		"react/no-unescaped-entities": "off",
 		"no-shadow": "off",
 		"react/state-in-constructor": "off",
-		"object-curly-newline": "off"
+		"object-curly-newline": "off",
+		"jsx-quotes": [
+			2,
+			"prefer-single"
+		]
 	},
 	"parser": "babel-eslint"
 }

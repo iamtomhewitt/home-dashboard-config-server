@@ -77,10 +77,10 @@ class Gmail extends Component {
     const isColourItem = title.toLowerCase().includes('colour');
     return (
       <div key={key}>
-        <span className="gmail-item-key">{title}</span>
+        <span className='gmail-item-key'>{title}</span>
         {isColourItem
           ? <ColourInput value={value} onChange={(e) => this.onChangeColour(e, key, index)} />
-          : <input className="widget-value" value={value} onChange={onChange} id={id} />}
+          : <input className='widget-value' value={value} onChange={onChange} id={id} />}
       </div>
     );
   }
@@ -90,7 +90,7 @@ class Gmail extends Component {
     const { gmailAddress } = gmail;
 
     return (
-      <div key={index} className="gmail-item">
+      <div key={index} className='gmail-item' data-test-id='gmail-item'>
         <h4>{gmailAddress}</h4>
         {props.map(({ key, value }) => (
           this.renderItem({
@@ -103,7 +103,7 @@ class Gmail extends Component {
           })
         ))}
 
-        <button className="gmail-item-remove" onClick={(e) => this.removeGmail(e, gmail)}>Remove '{gmailAddress}'</button>
+        <button className='gmail-item-remove' onClick={(e) => this.removeGmail(e, gmail)} data-test-id='gmail-remove-gmail'>Remove '{gmailAddress}'</button>
       </div>
     );
   }
@@ -112,10 +112,10 @@ class Gmail extends Component {
     const { data } = this.state;
 
     return (
-      <div className="gmail">
+      <div className='gmail' data-test-id='gmail'>
         <h3>Gmail</h3>
         {data.map((item, index) => this.renderGmail(item, index))}
-        <button className="gmail-add" onClick={this.addGmail}>Add Gmail</button>
+        <button className='gmail-add' onClick={this.addGmail} data-test-id='gmail-add-gmail'>Add Gmail</button>
       </div>
     );
   }

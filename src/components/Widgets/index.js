@@ -10,7 +10,7 @@ import { toUpperSnakeCase } from '../../lib';
 const renderWidget = (Component, { key, value, action }) => <Component key={key} data={value} action={action} />;
 
 const Widgets = ({ widgets }) => (
-  <div>
+  <div data-test-id='widgets'>
     {widgets.map((widget) => {
       const { key, value } = widget;
       const action = toUpperSnakeCase(key);
@@ -18,9 +18,6 @@ const Widgets = ({ widgets }) => (
       let component;
 
       switch (key) {
-      case '_id':
-        return null;
-
       case 'binDay':
         component = BinDay;
         break;
