@@ -101,9 +101,12 @@ class App extends Component {
 
         {error && <div className='app-error'>Error: {error}</div>}
 
-        {responseMessage && <div className='app-response-message'>{responseMessage}</div>}
-
-        {widgets && <button className='app-save-button' onClick={this.onSave} disabled={loading}>Save All</button>}
+        {widgets && (
+          <div className='app-save'>
+            {responseMessage && <div>{new Date().toLocaleTimeString()} - {responseMessage}</div>}
+            <button onClick={this.onSave} disabled={loading}>Save All</button>
+          </div>
+        )}
       </div>
     );
   }
