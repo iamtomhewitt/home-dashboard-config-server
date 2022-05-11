@@ -1,3 +1,12 @@
+## 1.2.5 (11/05/2022) 
+
+
+### Issues in this release:
+
+* [#15](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/15) - Save button should follow you
+
+
+
 ## 1.2.4 (27/11/2021) 
 
 
