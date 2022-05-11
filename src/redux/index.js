@@ -22,6 +22,10 @@ function reducer(state = initalState, action) {
     state.config.widgets.binDay.bins = action.bins;
     return state;
 
+  case 'BUSES':
+    state.config.widgets.buses = action.data;
+    return state;
+
   case 'CLOCK':
     state.config.widgets.clock = action.data;
     return state;
