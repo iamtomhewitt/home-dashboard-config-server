@@ -1,3 +1,9 @@
+## 1.2.6 (11/05/2022) 
+
+
+There are no issues in this release.
+
+
 ## 1.2.5 (11/05/2022) 
 
 
