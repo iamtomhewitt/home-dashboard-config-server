@@ -1,3 +1,12 @@
+## 1.2.7 (11/05/2022) 
+
+
+### Issues in this release:
+
+* [#17](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/17) - Add buses
+
+
+
 ## 1.2.6 (11/05/2022) 
 
 
