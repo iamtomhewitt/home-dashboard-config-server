@@ -1,4 +1,4 @@
-@import './scss/colours';
+@import "./scss/colours";
 
 .app {
   h1 {
@@ -63,186 +63,36 @@
     text-align: center;
   }
 
-  &-response-message {
-    color: $success-colour;
-    margin: 10px auto;
-    text-align: center;
-  }
+  &-save {
+    div {
+      bottom: 25px;
+      color: $success-colour;
+      display: block;
+      font-weight: bold;
+      height: 40px;
+      letter-spacing: 2px;
+      margin: 10px;
+      position: fixed;
+      right: 0;
+      text-align: center;
+      text-transform: uppercase;
+      width: 25%;
+    }
 
-  &-save-button {
-    background: $primary-colour;
-    border: 0;
-    color: $button-text-colour;
-    display: block;
-    font-weight: bold;
-    height: 40px;
-    letter-spacing: 2px;
-    margin: 10px auto;
-    text-transform: uppercase;
-    width: 80%;
+    button {
+      background: $primary-colour;
+      border: 0;
+      bottom: 0;
+      color: $button-text-colour;
+      display: block;
+      font-weight: bold;
+      height: 40px;
+      letter-spacing: 2px;
+      margin: 10px;
+      position: fixed;
+      right: 0;
+      text-transform: uppercase;
+      width: 25%;
+    }
   }
 }
-
-// .app {
-//   text-align: center;
-
-//   h1 {
-//     margin: 0;
-//     margin-bottom: 10px;
-//     padding: 10px 0;
-//     background-color: $primary-colour;
-//     color: white;
-//     letter-spacing: 5px;
-//     font-weight: lighter;
-//     text-transform: uppercase;
-//   }
-
-//   .version {
-//     color: $label-colour;
-//   }
-
-//   .save-button {
-//     // background: $submit-button-colour;
-//     background: $primary-colour;
-//     border: 0;
-//     color: $button-text-colour;
-//     font-weight: bold;
-//     height: 40px;
-//     width: 500px;
-
-//     @media (max-width: 480px) {
-//       width: 100%;
-//     }
-//   }
-
-//   .add-button {
-//     background: $add-button-colour;
-//     border: 0;
-//     color: $button-text-colour;
-//     height: 40px;
-//     max-width: 508px;
-//     width: 100%;
-//   }
-
-//   .remove-button {
-//     background: $remove-button-colour;
-//     border: 0;
-//     color: $button-text-colour;
-//     height: 35px;
-//     margin: 10px 0;
-//     max-width: 508px;
-//     width: 100%;
-//   }
-
-//   .token {
-//     margin: auto;
-//     width: fit-content;
-//     border-radius: 20px;
-//     background-color: white;
-//     padding: 10px;
-
-//     span {
-//       display: inline-block;
-//       text-align: left;
-//       width: 250px;
-//     }
-
-//     @media (max-width: 480px) {
-//       span {
-//         width: 100%;
-//       }
-//     }
-
-//     input {
-//       border: 1px solid $input-border-colour;
-//       display: inline-block;
-//       height: 25px;
-//       margin: 5px 0;
-//       width: 250px;
-//     }
-
-//     @media (max-width: 480px) {
-//       input {
-//         border: 1px solid $input-border-colour;
-//         margin: 0;
-//         width: 98.5%;
-//       }
-//     }
-
-//     button {
-//       // background: $submit-button-colour;
-//       background: $primary-colour;
-//       text-transform: uppercase;
-
-//       border: 0;
-//       color: $button-text-colour;
-//       height: 30px;
-//       margin: 0 10px;
-//       width: 500px;
-//       letter-spacing: 2px;
-//     }
-
-//     @media (max-width: 480px) {
-//       button {
-//         margin: 0;
-//         width: 100%;
-//       }
-//     }
-//   }
-
-//   .widget-key {
-//     display: inline-block;
-//     text-align: left;
-//     width: 250px;
-
-//     @media (max-width: 480px) {
-//       width: 100%;
-//     }
-//   }
-
-//   .widget-value {
-//     border: 1px solid $input-border-colour;
-//     display: inline-block;
-//     height: 25px;
-//     margin: 5px 0;
-//     padding-left: 5px;
-//     width: 250px;
-
-//     @media (max-width: 480px) {
-//       width: 98.5%;
-//     }
-//   }
-
-//   .error {
-//     color: $error-colour;
-//     font-weight: bold;
-//   }
-
-//   .response-message {
-//     color: $success-colour;
-//     font-weight: bold;
-//     margin: 15px 0;
-//   }
-// }
-
-// .items {
-//   text-align: center;
-//   hr {
-//     margin-top: 40px;
-//     max-width: 500px;
-//   }
-
-//   .basic {
-//     display: inline-block;
-//     width: fit-content;
-//     border-radius: 20px;
-//     background-color: white;
-//     padding: 10px;
-//     margin-bottom: 25px;
-
-//     h3 {
-//       margin: 0 0 10px;
-//       font-weight: lighter;
-//     }
-//   }
-// }
