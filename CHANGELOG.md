@@ -1,3 +1,12 @@
+## 1.3.0 (17/05/2022) 
+
+
+### Issues in this release:
+
+* [#19](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/19) - Add general config
+
+
+
 ## 1.2.7 (11/05/2022) 
 
 
