@@ -8,6 +8,10 @@ function reducer(state = initalState, action) {
   console.log('Action: ', action.type);
 
   switch (action.type) {
+  case 'GENERAL':
+    state.config.general = action.data;
+    return state;
+
   case 'CONFIG':
     return {
       config: action.config,

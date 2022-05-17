@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Dialogs from './components/Dialogs';
+import General from './components/General';
 import LoadingIcon from './components/LoadingIcon';
 import Widgets from './components/Widgets';
 import { toKeysAndValues } from './lib';
@@ -76,7 +77,7 @@ class App extends Component {
   render() {
     const { error, token, responseMessage, loading } = this.state;
     const { config } = this.props;
-    const { widgets, dialogs } = config || {};
+    const { widgets, dialogs, general } = config || {};
     const loadedConfig = !loading && widgets;
 
     return (
@@ -96,6 +97,7 @@ class App extends Component {
 
         {loading && <div className='app-loading'><LoadingIcon /></div>}
 
+        {general && <General general={general} />}
         {widgets && <Widgets widgets={toKeysAndValues(widgets)} />}
         {dialogs && <Dialogs dialogs={toKeysAndValues(dialogs)} />}
 
