@@ -6,22 +6,19 @@
     "scripts": {
         "build": "react-scripts build",
         "coverage": "npm test >> coverage.txt",
+        "deploy": "sls --aws-profile tom deploy",
         "eject": "react-scripts eject",
         "lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
         "lint-fix": "eslint --ignore-path .gitignore . --fix",
         "lint-sass": "sass-lint '**/src/*.scss' --verbose --no-exit",
         "release": "github-releaser",
         "start": "react-scripts start",
-        "start-heroku": "serve -s build",
         "test": "jest --coverage --coverageReporters='text' --detectOpenHandles"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/iamtomhewitt/home-dashboard-config-server.git",
         "apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard-config-server"
-    },
-    "engines": {
-        "node": "14.19.0"
     },
     "dependencies": {
         "@testing-library/react": "^12.1.2",
@@ -54,6 +51,7 @@
         "github-releaser": "^1.6.1",
         "husky": "^1.1.2",
         "jest": "24.9.0",
+        "serverless-s3-sync": "^3.0.0",
         "validate-commit-msg": "^2.14.0"
     },
     "husky": {
