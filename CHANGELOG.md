@@ -1,3 +1,12 @@
+## 1.3.1 (23/09/2022) 
+
+
+### Issues in this release:
+
+* [#20](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/20) - Move to AWS 
+
+
+
 ## 1.3.0 (17/05/2022) 
 
 
