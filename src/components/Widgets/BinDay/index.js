@@ -8,9 +8,12 @@ import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class BinDay extends Component {
-  state = {
-    data: {},
-    bins: [],
+  constructor() {
+    super();
+    this.state = {
+      data: {},
+      bins: [],
+    };
   }
 
   componentDidMount() {
@@ -23,11 +26,11 @@ class BinDay extends Component {
       bins,
     }), () => {
       const { dispatch, action } = this.props;
-      const { data, bins } = this.state;
+      const { data, bins: stateBins } = this.state;
       dispatch({
         type: action,
         data,
-        bins,
+        bins: stateBins,
       });
     });
   }

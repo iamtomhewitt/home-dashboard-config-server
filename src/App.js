@@ -6,18 +6,22 @@ import Dialogs from './components/Dialogs';
 import General from './components/General';
 import LoadingIcon from './components/LoadingIcon';
 import Widgets from './components/Widgets';
+import { getData, updateData } from './lib/firebase';
 import { toKeysAndValues } from './lib';
 import { version } from '../package.json';
 
 import './App.scss';
 
 class App extends Component {
-  state = {
-    token: '',
-    responseMessage: '',
-    error: '',
-    loading: false,
-    tokenIndex: 0,
+  constructor() {
+    super();
+    this.state = {
+      token: '',
+      responseMessage: '',
+      error: '',
+      loading: false,
+      tokenIndex: 0,
+    };
   }
 
   componentDidMount() {
@@ -37,18 +41,22 @@ class App extends Component {
     const { dispatch } = this.props;
 
     if (token) {
-      this.setState({ loading: true });
-      const response = await fetch(`${process.env.REACT_APP_FIREBASE}.json`);
-      const json = await response.json();
-      const configForToken = json.filter((x) => x.token === token)[0];
-      const indexForConfig = json.findIndex((x) => x.token === token);
+      this.setState({
+        loading: true,
+        error: null,
+      });
 
-      if (configForToken.length <= 0) {
+      const json = await getData();
+      const configForToken = json.filter((x) => x.token === token)[0];
+
+      if (!configForToken) {
         this.setState({ error: `Could not find config for token '${token}'`, loading: false });
-      } else {
-        this.setState({ loading: false, tokenIndex: indexForConfig });
-        dispatch({ type: 'CONFIG', config: configForToken });
+        return;
       }
+
+      const indexForConfig = json.findIndex((x) => x.token === token);
+      this.setState({ loading: false, tokenIndex: indexForConfig });
+      dispatch({ type: 'CONFIG', config: configForToken });
     } else {
       this.setState({ error: 'Please enter a token', loading: false });
       dispatch({ type: 'CONFIG', config: {} });
@@ -56,21 +64,17 @@ class App extends Component {
   }
 
   onSave = async (event) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const response = await fetch(`${process.env.REACT_APP_FIREBASE}/${this.state.tokenIndex}/.json`, {
-      method: 'PUT',
-      body: JSON.stringify(this.props.config),
-    });
+      await updateData({
+        index: this.state.tokenIndex,
+        data: this.props.config,
+      });
 
-    const { ok } = response;
-    const json = await response.json();
-    const { message } = json;
-
-    if (!ok) {
-      this.setState({ error: message });
-    } else {
       this.setState({ responseMessage: 'Config saved!' });
+    } catch (err) {
+      this.setState({ error: err.message });
     }
   }
 

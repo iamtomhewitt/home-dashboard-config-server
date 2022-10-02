@@ -18,21 +18,21 @@ const Widgets = ({ widgets }) => (
       let component;
 
       switch (key) {
-      case 'binDay':
-        component = BinDay;
-        break;
+        case 'binDay':
+          component = BinDay;
+          break;
 
-      case 'gmail':
-        component = Gmail;
-        break;
+        case 'gmail':
+          component = Gmail;
+          break;
 
-      case 'journeyPlanner':
-        component = JourneyPlanner;
-        break;
+        case 'journeyPlanner':
+          component = JourneyPlanner;
+          break;
 
-      default:
-        component = BasicItem;
-        break;
+        default:
+          component = BasicItem;
+          break;
       }
 
       return renderWidget(component, { key, value, action });
