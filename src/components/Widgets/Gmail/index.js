@@ -8,8 +8,11 @@ import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class Gmail extends Component {
-  state = {
-    data: [],
+  constructor() {
+    super();
+    this.state = {
+      data: [],
+    };
   }
 
   componentDidMount() {
@@ -21,10 +24,10 @@ class Gmail extends Component {
       data,
     }), () => {
       const { dispatch, action } = this.props;
-      const { data } = this.state;
+      const { data: stateData } = this.state;
       dispatch({
         type: action,
-        data,
+        data: stateData,
       });
     });
   }

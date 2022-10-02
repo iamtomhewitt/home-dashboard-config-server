@@ -13,12 +13,15 @@ import { version } from '../package.json';
 import './App.scss';
 
 class App extends Component {
-  state = {
-    token: '',
-    responseMessage: '',
-    error: '',
-    loading: false,
-    tokenIndex: 0,
+  constructor() {
+    super();
+    this.state = {
+      token: '',
+      responseMessage: '',
+      error: '',
+      loading: false,
+      tokenIndex: 0,
+    };
   }
 
   componentDidMount() {

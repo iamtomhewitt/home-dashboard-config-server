@@ -8,8 +8,11 @@ import { toKeysAndValues, toSentence } from '../../lib';
 import './index.scss';
 
 class BasicItem extends Component {
-  state = {
-    data: {},
+  constructor() {
+    super();
+    this.state = {
+      data: {},
+    };
   }
 
   componentDidMount() {

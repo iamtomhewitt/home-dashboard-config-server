@@ -8,9 +8,12 @@ import { toKeysAndValues, toSentence } from '../../../lib';
 import './index.scss';
 
 class JourneyPlanner extends Component {
-  state = {
-    data: {},
-    journeys: [],
+  constructor() {
+    super();
+    this.state = {
+      data: {},
+      journeys: [],
+    };
   }
 
   componentDidMount() {
@@ -21,11 +24,11 @@ class JourneyPlanner extends Component {
   setJourneysAndDispatch = ({ journeys }) => {
     this.setState(() => ({ journeys }), () => {
       const { dispatch, action } = this.props;
-      const { data, journeys } = this.state;
+      const { data, journeys: stateJourneys } = this.state;
       dispatch({
         type: action,
         data,
-        journeys,
+        journeys: stateJourneys,
       });
     });
   }

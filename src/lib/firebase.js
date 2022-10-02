@@ -13,5 +13,5 @@ export const getData = async () => {
 };
 
 export const updateData = async ({ index, data }) => {
-  update(child(db, `/${index}`), data).then(console.log);
+  update(child(db, `/${index}`), data);
 };
