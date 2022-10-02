@@ -6,7 +6,7 @@
     "scripts": {
         "build": "react-scripts build",
         "coverage": "npm test >> coverage.txt",
-        "deploy": "sls --aws-profile tom deploy",
+        "deploy": "npm run build && sls --aws-profile tom deploy",
         "eject": "react-scripts eject",
         "lint": "eslint --ignore-path .gitignore . && npm run lint-sass",
         "lint-fix": "eslint --ignore-path .gitignore . --fix",
