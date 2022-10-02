@@ -4,6 +4,7 @@
   h1 {
     background-color: $primary-colour;
     color: $white;
+    font-size: 26px;
     font-weight: lighter;
     letter-spacing: 5px;
     margin: 0;
@@ -15,13 +16,14 @@
 
   &-version {
     color: $label-colour;
+    font-size: 12px;
     margin: 10px 0;
     text-align: center;
   }
 
   &-token {
     background-color: $white;
-    border-radius: 20px;
+    border-radius: 5px;
     margin: auto;
     min-width: 60%;
     padding: 20px 10px;
@@ -33,7 +35,9 @@
 
     input {
       border: 1px solid $input-border-colour;
+      border-radius: 3px;
       box-sizing: border-box;
+      font-family: inherit;
       height: 25px;
       margin: 5px 0;
       width: 100%;
@@ -42,12 +46,12 @@
     button {
       background: $primary-colour;
       border: 0;
+      border-radius: 3px;
       color: $button-text-colour;
       display: block;
+      font-family: inherit;
       height: 30px;
-      letter-spacing: 2px;
       margin: 0 auto;
-      text-transform: uppercase;
       width: 100%;
     }
   }
@@ -64,35 +68,25 @@
   }
 
   &-save {
+    margin: auto;
+    text-align: center;
+
     div {
-      bottom: 25px;
       color: $success-colour;
-      display: block;
       font-weight: bold;
-      height: 40px;
-      letter-spacing: 2px;
-      margin: 10px;
-      position: fixed;
-      right: 0;
       text-align: center;
-      text-transform: uppercase;
-      width: 25%;
     }
 
     button {
       background: $primary-colour;
       border: 0;
-      bottom: 0;
+      border-radius: 3px;
       color: $button-text-colour;
-      display: block;
+      font-family: inherit;
       font-weight: bold;
-      height: 40px;
-      letter-spacing: 2px;
+      height: 30px;
       margin: 10px;
-      position: fixed;
-      right: 0;
-      text-transform: uppercase;
-      width: 25%;
+      width: 50%;
     }
   }
 }

@@ -2,7 +2,7 @@
 
 .gmail {
   background-color: $white;
-  border-radius: 20px;
+  border-radius: 5px;
   margin: 30px auto;
   min-width: 60%;
   padding: 10px;
@@ -22,34 +22,36 @@
 
     input {
       border: 1px solid $input-border-colour;
+      border-radius: 3px;
       box-sizing: border-box;
+      font-family: inherit;
       height: 25px;
       margin: 5px 0;
       width: 100%;
     }
 
-      &-remove {
-      background: $primary-colour;
-      border: 0;
-      color: $button-text-colour;
+    &-remove {
+      font-family: inherit;
+      background: transparent;
+      border: 1px solid $primary-colour;
+      color: $primary-colour;
+      border-radius: 3px;
       display: block;
       height: 30px;
-      letter-spacing: 2px;
       margin: 0 auto;
-      text-transform: uppercase;
       width: 100%;
     }
   }
 
   &-add {
+    font-family: inherit;
     background: $primary-colour;
     border: 0;
+    border-radius: 3px;
     color: $button-text-colour;
     display: block;
     height: 30px;
-    letter-spacing: 2px;
     margin: 10px auto;
-    text-transform: uppercase;
     width: 100%;
   }
 }
