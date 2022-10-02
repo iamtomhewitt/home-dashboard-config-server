@@ -1,3 +1,12 @@
+## 1.3.2 (02/10/2022) 
+
+
+### Issues in this release:
+
+* [#23](https://github.com/iamtomhewitt/home-dashboard-config-server/issues/23) - Use firebase sdk
+
+
+
 ## 1.3.1 (23/09/2022) 
 
 
